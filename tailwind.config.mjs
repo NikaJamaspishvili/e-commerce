@@ -7,10 +7,18 @@ export default {
   ],
   theme: {
     extend: {
-      colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+      fontFamily: {
+        inter: ["var(--font-inter)"],
+        poppins: ["var(--font-poppins)"],
       },
+      backgroundColor:{
+        primaryBlack: "#141718",
+      },
+      colors:{
+        primaryBlack: "#141718",
+        primaryGray: "#6C7275",
+        primaryGreen: "#38CB89",
+      }
     },
   },
   plugins: [],
