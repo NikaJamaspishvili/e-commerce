@@ -1,13 +1,17 @@
-import Eye from "./(components)/Eye.jsx";
+"use client";
+
+import { login } from './(components)/authenticate.js';
+
+import { useState } from 'react'
+import { useActionState } from 'react';
+
+import {FaEye,FaEyeSlash} from "react-icons/fa";
+
 const page = () => {
 
-async function handleSubmit(formData){
-  'use server';
+  const [visible,setVisible] = useState(false);
 
-  const email = formData.get("email");
-  const password = formData.get("password");
-}
-
+  const [state,action,pending] = useActionState(login);
 
   return <div className="h-screen flex flex-col md:flex-row">
 
@@ -18,14 +22,29 @@ async function handleSubmit(formData){
 
   <section className="mt-8 flex flex-col gap-10 w-[90%] mx-auto pb-5 md:px-10 justify-center max-w-xl">
 
-    <h1 className="text-primaryBlack text-5xl font-poppins">Sign in</h1>
-    <p className="text-primaryGray font-inter text-md">Don't have an account yet? <label className="text-primaryGreen">Sign Up</label></p>
+  <h1 className="text-primaryBlack text-5xl font-poppins">Sign in</h1>
+  <p className="text-primaryGray font-inter text-md">Don't have an account yet? <label className="text-primaryGreen">Sign Up</label></p>
 
-    <form className="flex flex-col gap-8" action={handleSubmit}>
-      <input className="border-b-2 border-[#E8ECEF] pb-2 font-inter outline-none text-primaryGray" type="text" name="email" placeholder="Username or email" />
-      <Eye />
-    <button type="submit" className="bg-primaryBlack text-white text-xl font-inter py-4 rounded-lg mt-1">Sign In</button>
-    </form>
+  <form className="flex flex-col gap-8" action={action}>
+  
+  <div>
+  <input className="border-b-2 border-[#E8ECEF] pb-2 font-inter outline-none text-primaryGray w-full" type="text" name="email" placeholder="Username or email" />
+  {state?.errors?.email?.[0] && <p className='text-red-400'>{state?.errors?.email?.[0]}</p>}
+  </div>
+  
+  <div>
+  <div className="flex border-b-2 border-[#E8ECEF] pb-2 font-inter justify-between">
+  <input className='outline-none text-primaryGray w-full' name='password' type={`${visible ? "text" : "password"}`} placeholder="Password" />
+ <p className='text-3xl cursor-pointer' onClick={()=>{setVisible(!visible)}}>
+  {visible ? <FaEyeSlash/> : <FaEye />}
+ </p>
+ </div>   
+ {state?.errors?.password?.[0] && <p className='text-red-400'>{state?.errors?.password?.[0]}</p>}
+ </div>
+
+ <button className="bg-primaryBlack text-white text-xl font-inter py-4 rounded-lg mt-1">{`${pending ? "Submitting..." : "Sign In"}`}</button>
+
+  </form>
 
   </section>
 
