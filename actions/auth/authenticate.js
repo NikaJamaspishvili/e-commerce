@@ -41,10 +41,9 @@ export async function login(state,formData){
 
  //check if username exists and compare passwords
 
- const query = "SELECT * FROM users WHERE username = ?";
- const result = await callDatabase(query,[username]);
+ const query = "SELECT * FROM users WHERE username = ? AND provider = ?";
+ const result = await callDatabase(query,[username,'local']);
 
- console.log(result);
 
  if(result.length === 0){
     return {
@@ -71,7 +70,7 @@ export async function login(state,formData){
   path: "/",
 });
 
-// redirect user to home page 
+// redirect user to shop page 
 redirect('/shop');
 
 }
@@ -129,10 +128,8 @@ export async function signup(state,formData){
    path: "/",
  });
 
-  // redirect user to home page
+  // redirect user to shop page
     redirect('/shop');
 
 }
-
-
 

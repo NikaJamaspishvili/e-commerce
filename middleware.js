@@ -1,6 +1,9 @@
 import { NextResponse } from 'next/server';
 
-import { verifyToken } from './components/auth/token';
+import { verifyToken } from './actions/auth/token';
+import { auth } from './auth';
+
+export const runtime = "nodejs";
 
 export async function middleware(request) {
 
@@ -10,11 +13,19 @@ export async function middleware(request) {
 
   //token verification for /register pages
 
+
   if(url.startsWith("/register")){
-   
-   if(state) return NextResponse.redirect(new URL("/shop",request.nextUrl));
     
-    return NextResponse.next();
+    if(state) return NextResponse.redirect(new URL("/shop",request.nextUrl));
+    
+    if(url === "/register/google/username"){
+
+      const session = await auth();
+      if(session) return NextResponse.next(); 
+      return NextResponse.redirect(new URL("/register/signup",request.nextUrl));
+     }
+
+   return NextResponse.next();
   }
 
    //token verification for /shop pages
@@ -28,7 +39,6 @@ export async function middleware(request) {
 
 }
 
-
 export const config = {
-  matcher: ['/register/signup','/register/login','/shop'],
+  matcher: ['/register/signup','/register/google/username','/register/login','/shop'],
 }

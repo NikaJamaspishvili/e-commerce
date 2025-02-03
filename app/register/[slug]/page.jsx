@@ -1,8 +1,8 @@
 "use client";
 
-import { login } from '../../../components/auth/authenticate.js';
-import { signup } from '../../../components/auth/authenticate.js';
-
+import { login } from '../../../actions/auth/authenticate.js';
+import { signup } from '../../../actions/auth/authenticate.js';
+import { googleLogin } from '@/actions/googleAuth/googleAuth.js';
 
 import { useState } from 'react'
 import { useActionState } from 'react';
@@ -61,7 +61,7 @@ if(slug === "signup" || slug === "login"){
  {state?.errors?.password?.[0] && <p className='text-red-400'>{state?.errors?.password?.[0]}</p>}
  </div>
 
- <img className='w-11 h-11 mx-auto cursor-pointer' src="/login_assets/google.png" alt="google icon" />
+ <img onClick={()=>{googleLogin()}} className='w-11 h-11 mx-auto cursor-pointer' src="/login_assets/google.png" alt="google icon" />
 
  <button className="bg-primaryBlack text-white text-xl font-inter py-4 rounded-lg mt-1">{`${pending ? "Submitting..." : slug === "signup" ? "Sign Up" : "Sign In"}`}</button>
 
