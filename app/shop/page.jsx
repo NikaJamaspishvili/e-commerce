@@ -1,11 +1,13 @@
-import React from 'react'
+import Navbar from "./Navbar"
+import Header from "./Header"
 
 const page = () => {
-  return (
-    <div>
-      <h1>Shop website</h1>
+  return <div className="">
+      <Navbar />
+    <div className="max-w-[95%] mx-auto flex flex-col items-center">
+      <Header />
     </div>
-  )
+    </div>
 }
 
 export default page

@@ -18,6 +18,8 @@ export default {
         primaryBlack: "#141718",
         primaryGray: "#6C7275",
         primaryGreen: "#38CB89",
+        errorColor: "#fc8181",
+        linkColor: "#377DFF"
       }
     },
   },

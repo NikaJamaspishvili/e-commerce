@@ -29,6 +29,8 @@ if(session){
      await googleLoginUser(selectResult[0].id);
   }
 
+  return true;
+
 }
 
 }

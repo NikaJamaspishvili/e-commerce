@@ -41,13 +41,13 @@ if(slug === "signup" || slug === "login"){
   <form className="flex flex-col gap-8" action={action}>
   <div>
   <input className="border-b-2 border-[#E8ECEF] pb-2 font-inter outline-none text-primaryGray w-full" type="text" name="username" placeholder="Username..." />
-  {state?.errors?.username?.[0] && <p className='text-red-400'>{state?.errors?.username?.[0]}</p>}
+  {state?.errors?.username?.[0] && <p className='text-errorColor'>{state?.errors?.username?.[0]}</p>}
   </div>
   
   {
   slug === "signup" && <div>
    <input name='email' className='border-b-2 border-[#E8ECEF] pb-2 font-inter outline-none text-primaryGray w-full' type="text" placeholder='Email...' />
-   {state?.errors?.email?.[0] && <p className='text-red-400'>{state?.errors?.email?.[0]}</p>}
+   {state?.errors?.email?.[0] && <p className='text-errorColor'>{state?.errors?.email?.[0]}</p>}
   </div>
   }
 
@@ -58,7 +58,7 @@ if(slug === "signup" || slug === "login"){
   {visible ? <FaEyeSlash/> : <FaEye />}
  </p>
  </div>   
- {state?.errors?.password?.[0] && <p className='text-red-400'>{state?.errors?.password?.[0]}</p>}
+ {state?.errors?.password?.[0] && <p className='text-errorColor'>{state?.errors?.password?.[0]}</p>}
  </div>
 
  <img onClick={()=>{googleLogin()}} className='w-11 h-11 mx-auto cursor-pointer' src="/login_assets/google.png" alt="google icon" />
