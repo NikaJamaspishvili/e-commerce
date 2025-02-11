@@ -5,8 +5,8 @@ import { SessionProvider } from "next-auth/react";
 import { usePathname } from "next/navigation";
 
 //component imports
-import Navbar from "./shop/Navbar";
-import Footer from "./shop/Footer";
+import Navbar from "../components/shop/Navbar";
+import Footer from "../components/shop/Footer";
 
 import "./globals.css";
 
@@ -29,7 +29,7 @@ const spaceGrotesk = Space_Grotesk({
 export default function RootLayout({ children }) {
 
   const pathName = usePathname();
-  const showComponents = pathName.startsWith('/shop');
+  const showComponents = pathName.startsWith('/elegant');
 
   return (
     <html lang="en">

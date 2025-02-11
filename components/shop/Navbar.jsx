@@ -6,16 +6,20 @@ import { IoMdClose } from "react-icons/io";
 
 import { useState } from "react";
 
+import { useRouter } from "next/navigation";
+
 function Navbar() {
 
  const [showDiscount,setShowDiscount] = useState(true);
  const [showMenu,setShowMenu] = useState(false);
 
+ const router = useRouter();
+
  return <div className="fixed flex w-screen flex-col items-center cursor-default bg-white z-10">
  
  {showDiscount &&<div className="md:justify-between w-screen p-3 flex gap-4 items-center justify-center text-[#343839] bg-[#F3F5F7] font-inter font-semibold">
     <div className="flex gap-6 md:mx-auto">
-    <img width={30} src="icons/Discount.svg" alt="Discount icon" />
+    <img width={30} src="/icons/Discount.svg" alt="Discount icon" />
     <p className="text-lg text-center">30% off storewide — Limited time! </p>
     <p className="hidden md:flex cursor-pointer items-center gap-2 border-b font-inter text-linkColor border-linkColor">Shop Now {<FaArrowRight />}</p>
     </div>  
@@ -37,9 +41,9 @@ function Navbar() {
       </section>
  
       <section className="flex items-center justify-center gap-2">
-     <img width={25} className="hidden md:block cursor-pointer mr-3" src="icons/Search.svg" alt="search icon" />
-     <img width={25} className="hidden mr-3 cursor-pointer md:block" src="icons/Profile.svg" alt="Profile Image" />
-     <img width={30} className="cursor-pointer" src="icons/Cart.svg" alt="Cart icon" />
+     <img width={25} className="hidden md:block cursor-pointer mr-3" src="/icons/Search.svg" alt="search icon" />
+     <img onClick={()=>{router.push('/elegant/profile')}} width={25} className="hidden mr-3 cursor-pointer md:block" src="/icons/Profile.svg" alt="Profile Image" />
+     <img width={30} className="cursor-pointer" src="/icons/Cart.svg" alt="Cart icon" />
      <p className="text-md bg-primaryBlack text-white rounded-full w-6 h-6 flex items-center justify-center">2</p>
       </section>
   </div>
@@ -51,8 +55,8 @@ function Navbar() {
        <p className="cursor-pointer">Product</p>
        <p className="cursor-pointer">Contact us</p>
        <section className="flex gap-8 text-5xl text-primaryBlack">
-       <img width={50} className="cursor-pointer mr-3" src="icons/Search.svg" alt="search icon" />
-       <img width={50} className="mr-3 cursor-pointer" src="icons/Profile.svg" alt="Profile Image" />
+       <img width={50} className="cursor-pointer mr-3" src="/icons/Search.svg" alt="search icon" />
+       <img width={50} className="mr-3 cursor-pointer" src="/icons/Profile.svg" alt="Profile Image" />
        </section>
   </div>
   }

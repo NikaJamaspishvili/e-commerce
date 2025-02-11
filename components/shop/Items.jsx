@@ -26,7 +26,7 @@ let array = [
 
         <div className="flex gap-1 mt-1">
             {[...Array(result.startCount)].map((_,index) => {
-                return <img key={index} src="icons/Star.svg" alt="black star icon for rating" />
+                return <img key={index} src="/icons/Star.svg" alt="black star icon for rating" />
             })}
         </div>
 

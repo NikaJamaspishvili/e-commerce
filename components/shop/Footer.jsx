@@ -20,9 +20,9 @@ function Footer() {
 
         <section className="border-t border-primaryGray pt-6 lg:pt-3 gap-6 lg:gap-8 flex flex-col lg:flex-row-reverse lg:items-center lg:w-full lg:justify-between">
             <div className="flex justify-center gap-6">
-                <img className="w-[30px] cursor-pointer" src="icons/Instagram.svg" alt="instagram icon" />
-                <img className="w-[30px] cursor-pointer" src="icons/Facebook.svg" alt="facebook icon" />
-                <img className="w-[30px] cursor-pointer" src="icons/Youtube.svg" alt="youtube icon" />
+                <img className="w-[30px] cursor-pointer" src="/icons/Instagram.svg" alt="instagram icon" />
+                <img className="w-[30px] cursor-pointer" src="/icons/Facebook.svg" alt="facebook icon" />
+                <img className="w-[30px] cursor-pointer" src="/icons/Youtube.svg" alt="youtube icon" />
             </div>
 
             <div className="lg:mr-auto text-sm lg:text-nowrap text-[#FEFEFE] font-poppins flex justify-center gap-6 lg:gap-4">

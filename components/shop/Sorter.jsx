@@ -27,7 +27,7 @@ function Sorter() {
         
         <div className="flex justify-between py-4 pl-4 pr-1" onClick={()=>{setShowPrice(!showPrice)}}>
         <h1 className="font-inter">All Price</h1>
-        <img width={9} src="icons/CarretDown.svg" alt="CarretDown Symbol" />
+        <img width={9} src="/icons/CarretDown.svg" alt="CarretDown Symbol" />
         </div>
 
     {showPrice && <form className="z-10 absolute top-auto left-0 border-2 border-black p-4 bg-white mt-2 rounded-md w-full">

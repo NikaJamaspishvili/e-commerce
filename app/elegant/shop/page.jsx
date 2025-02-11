@@ -1,6 +1,6 @@
-import Header from "./Header"
-import Sorter from "./Sorter"
-import Items from "./Items"
+import Header from "../../../components/shop/Header"
+import Sorter from "../../../components/shop/Sorter"
+import Items from "../../../components/shop/Items"
 
 const page = () => {
   return <div className="pb-20">

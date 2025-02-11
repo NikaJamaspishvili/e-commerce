@@ -28,9 +28,9 @@ export async function middleware(request) {
    return NextResponse.next();
   }
 
-   //token verification for /shop pages
+   //token verification for registered pages
   
- if(url.startsWith("/shop")){
+ if(url.startsWith("/elegant")){
   
   if(state) return NextResponse.next();
 
@@ -40,5 +40,5 @@ export async function middleware(request) {
 }
 
 export const config = {
-  matcher: ['/register/signup','/register/google/username','/register/login','/shop'],
+  matcher: ['/register/signup','/register/google/username','/register/login','/elegant'],
 }
