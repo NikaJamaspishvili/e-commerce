@@ -1,3 +1,56 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.borderBottomAnimation{
+ position: relative;
+}
+
+.borderBottomAnimation::before{
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 1px;
+    width: 100%;
+    transform: scaleX(0);
+    background-color: #000000;
+    transition: transform 0.2s ease-in-out;
+}
+
+.borderBottomAnimation:hover::before{
+    transform: scaleX(1);
+}
+
+.typeWritterAnimation{
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 1px solid;
+    animation: typing 2s steps(43) forwards,blink 1s step-end infinite;
+}
+
+@keyframes typing{
+    from{
+        width: 0;
+    }
+    to{
+        width: 100%;
+    }
+}
+
+@keyframes blink{
+  50%{
+    border-color: transparent;
+  }
+}
+
+
+@media only screen and (max-width:450px){
+    .typeWritterAnimation{
+        white-space: wrap;
+        overflow: auto;
+        border-right: 0;
+        animation: none;
+    }
+}

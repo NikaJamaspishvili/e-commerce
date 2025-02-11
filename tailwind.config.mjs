@@ -10,6 +10,7 @@ export default {
       fontFamily: {
         inter: ["var(--font-inter)"],
         poppins: ["var(--font-poppins)"],
+        spaceGrotesk: ["var(--font-spaceGrotesk)"],
       },
       backgroundColor:{
         primaryBlack: "#141718",
