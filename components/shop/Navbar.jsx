@@ -7,6 +7,7 @@ import { IoMdClose } from "react-icons/io";
 import { useState } from "react";
 
 import { useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 
 function Navbar() {
 
@@ -14,10 +15,11 @@ function Navbar() {
  const [showMenu,setShowMenu] = useState(false);
 
  const router = useRouter();
+ const pathName = usePathname();
 
- return <div className="fixed flex w-screen flex-col items-center cursor-default bg-white z-10">
+ return <div className="fixed flex w-full flex-col items-center cursor-default bg-white z-10">
  
- {showDiscount &&<div className="md:justify-between w-screen p-3 flex gap-4 items-center justify-center text-[#343839] bg-[#F3F5F7] font-inter font-semibold">
+ {showDiscount && !pathName.startsWith('/elegant/shop') && <div className="md:justify-between w-screen p-3 flex gap-4 items-center justify-center text-[#343839] bg-[#F3F5F7] font-inter font-semibold">
     <div className="flex gap-6 md:mx-auto">
     <img width={30} src="/icons/Discount.svg" alt="Discount icon" />
     <p className="text-lg text-center">30% off storewide — Limited time! </p>

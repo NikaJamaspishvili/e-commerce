@@ -33,9 +33,11 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang="en">
-      <body className={`bg-[#FFFFFF] ${poppins.variable} ${inter.variable} ${spaceGrotesk.variable} max-w-[1500px] mx-auto`}>
+      <body className={`bg-[#FFFFFF] ${poppins.variable} ${inter.variable} ${spaceGrotesk.variable} relative`}>
         {showComponents && <Navbar />}
+        <div className="w-[95%] mx-auto max-w-[1500px]">
         <SessionProvider>{children}</SessionProvider>
+        </div>
         {showComponents && <Footer />}
       </body>
     </html>

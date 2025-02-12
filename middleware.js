@@ -16,7 +16,7 @@ export async function middleware(request) {
 
   if(url.startsWith("/register")){
     
-    if(state) return NextResponse.redirect(new URL("/shop",request.nextUrl));
+    if(state) return NextResponse.redirect(new URL("/elegant/shop",request.nextUrl));
     
     if(url === "/register/google/username"){
 

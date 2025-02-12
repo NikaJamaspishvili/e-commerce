@@ -47,7 +47,7 @@ export async function googleLoginUser(userId){
   path: "/",  
  });
 
- redirect('/shop');
+ redirect('/elegant/shop');
 }
 
 export async function googleRegisterUser(state,formData){
@@ -83,6 +83,6 @@ let token =  await generateToken(insertResult.insertId);
   path: "/",  
  });
 
- redirect('/shop');
+ redirect('/elegant/shop');
 }
 }
