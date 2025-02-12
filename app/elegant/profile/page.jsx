@@ -4,11 +4,10 @@ import { lazy,Suspense } from "react";
 import { useState } from "react";
 
 import Loader from "@/components/loader/Loader";
-import Products from "@/components/profile/Products";
 
 const Account = lazy(()=>import('@/components/profile/Account'));
 const Orders = lazy(()=>import('@/components/profile/Orders'));
-const Prdocuts = lazy(()=>import('@/components/profile/Products'));
+const Products = lazy(()=>import('@/components/profile/Products'));
 
 const page = () => {
 

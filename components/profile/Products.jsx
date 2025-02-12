@@ -1,9 +1,9 @@
 function Products() {
   return (
     <div>
-      products
+    <h1>hello world</h1>
     </div>
   )
 }
 
-export default Products
+export default Products;
