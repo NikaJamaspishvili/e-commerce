@@ -1,3 +1,5 @@
+"use server";
+
 function Orders() {
  let array = [
     {numberID:"#34",Dates:"October 17,2023", Status:"Delievered", Price: "$1234.00"},

@@ -1,3 +1,5 @@
+"use server";
+
 function Account() {
   return (
     <div className="flex flex-col w-full mt-10 gap-8 mb-10 md:mt-0">
