@@ -3,9 +3,9 @@
 import {use} from "react";
 
 import Menu from "@/components/profile/Menu";
-import Account from '@/components/profile/Account';
-import Orders from '@/components/profile/Orders';
-import Products from '@/components/profile/Products';
+import Account from "@/components/profile/Account";
+import Logout from "@/components/profile/Logout";
+import Conditional from "@/components/profile/Conditional";
 
 const page = ({params}) => {
    
@@ -18,9 +18,10 @@ const page = ({params}) => {
       <section className="w-5/6 mx-auto md:flex md:gap-16 md:mt-16">
      <Menu value={value}/>
 
-     {value === "account" && <Account />}
-     {value === "orders" && <Orders />}
-     {value === "myproducts" && <Products />}
+    {value === "account" && <Account />}
+    {value === "logout" && <Logout />}
+    {/* this checks which route user is on and renders components dynamically */}
+    <Conditional variable={value}/>
 
       </section>
     </div>

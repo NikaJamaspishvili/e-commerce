@@ -1,4 +1,6 @@
-"use server";
+"use client";
+
+import { FaPlus } from "react-icons/fa";
 
 function Products() {
 
@@ -6,18 +8,20 @@ function Products() {
   {name:"Tray table",categories:["Bedroom","LivingRoom"],img:"/login_assets/chair.jpg",price:"$19.19"},
   {name:"Tray table",categories:["Bedroom","LivingRoom"],img:"/login_assets/chair.jpg",price:"$19.19"},
   {name:"Tray table",categories:["Bedroom","LivingRoom"],img:"/login_assets/chair.jpg",price:"$19.19"},
-  {name:"Tray table",categories:["Bedroom","LivingRoom","LivingRoom","LivingRoom","LivingRoom"],img:"/login_assets/chair.jpg",price:"$19.19"},
+  {name:"Tray table",categories:["Bedroom","LivingRoom"],img:"/login_assets/chair.jpg",price:"$19.19"},
   {name:"Tray table",categories:["Bedroom","LivingRoom"],img:"/login_assets/chair.jpg",price:"$19.19"},
  ]
 
   return (
     <div className="w-full mt-10 md:mt-0">
+      <div className="flex w-full justify-between items-center">
       <h1 className="font-inter font-semibold md:text-2xl text-3xl  text-[#000000]">My Products</h1>
-  
-      <div className="w-full hidden lg:block mt-10">
+      <label className="text-2xl text-white p-2 rounded-full bg-primaryGreen cursor-pointer"><FaPlus /></label>
+      </div>
+     {window.innerWidth > 1024 ? <div className="w-full mt-10">
        <table className="w-full table-fixed">
         <thead>
-        <tr className="border-b-2 border-[#93a4b2] text-primaryGray text-left">
+        <tr className="border-b-2 border-[#E8ECEF] text-primaryGray text-left">
           <th className="pb-2 font-light w-1/2">Product</th>
           <th className="pb-2 font-light">Price</th>
           <th className="py-2 font-light">Action</th>
@@ -34,7 +38,7 @@ function Products() {
            
             <section className="flex flex-col gap-2">
              {result.categories.map((result,index)=>{
-                return <p key={index} className="text-sm">{result}</p>
+                return <p key={index} className="text-sm break-all">{result}</p>
               })}
             </section>
 
@@ -51,19 +55,21 @@ function Products() {
       </div>
 
 
-      <section className="mt-10 lg:hidden">
+     : <section className="mt-10 w-full">
         <p className="border-b-2 font-inter font-light text-primaryGray pl-10 pb-2 text-lg tracking-wider">Product</p>
 
-       <section className="flex flex-col gap-10 mt-5">
+       <section className="w-full flex flex-col gap-16 mt-7">
         {array.map((result,index)=>{
-        return <div key={index} className="flex flex-col gap-7 font-inter">
+        return <div key={index} className="w-full flex flex-col gap-6 font-inter">
 
-         <div className="flex gap-5 items-center">
+         <div className="w-full flex gap-5 items-start">
           <img className="w-[100px]" src={result.img} alt={result.name} />
           <div className="flex flex-col gap-3 w-full">
-          <p className="font-semibold break-words">{result.name}</p>
-          <p className="font-light break-words">{result.categories}</p>
-          <p className="font-light break-words">{result.price}</p>
+          <p className="font-semibold">{result.name}</p>
+          {result.categories.map((result,index)=>{
+          return <p key={index} className="font-light break-all text-sm text-primaryGray">{result},</p>
+          })}
+          <p className="mt-2 text-primaryBlack font-light">{result.price}</p>
           </div>
          </div> 
 
@@ -72,7 +78,7 @@ function Products() {
         })}
         </section> 
       </section>
-
+}
     </div>
   )
 }

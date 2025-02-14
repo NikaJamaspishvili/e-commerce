@@ -1,4 +1,4 @@
-"use server";
+"use client";
 
 function Orders() {
  let array = [
@@ -13,7 +13,7 @@ function Orders() {
     <div className="w-full mt-10 md:mt-0">
       <h1 className="font-inter font-semibold text-2xl text-[#000000]">Orders History</h1>
 
-       <div className="w-full hidden md:block mt-10">
+       {window.innerWidth > 768 ? <div className="w-full mt-10">
        <table className="w-full">
         <thead>
         <tr className="border-b-2 border-[#E8ECEF] text-primaryGray text-left">
@@ -38,7 +38,7 @@ function Orders() {
       </div>
 
 
-     <section className="md:hidden flex flex-col mt-5">
+    : <section className="flex flex-col mt-5 font-light">
        {array.map((result,index)=>{
         return <div key={result.numberID} className="flex gap-20 border-b-2 border-[#E8ECEF] py-5">
 
@@ -60,6 +60,7 @@ function Orders() {
        })} 
 
         </section>
+}
 
     </div>
   )
