@@ -1,15 +1,13 @@
 import { NextResponse } from 'next/server';
 
-import { verifyToken } from './actions/auth/token';
+import { decodeToken } from './actions/auth/token';
 import { auth } from './auth';
-
-export const runtime = "nodejs";
 
 export async function middleware(request) {
 
   const url = request.nextUrl.pathname;
 
-  const state = await verifyToken();
+  const state = await decodeToken();
 
   //token verification for /register pages
 
@@ -40,5 +38,5 @@ export async function middleware(request) {
 }
 
 export const config = {
-  matcher: ['/register/signup','/register/google/username','/register/login','/elegant'],
+  matcher: ['/register/signup','/register/google/username','/register/login','/elegant/:path*'],
 }

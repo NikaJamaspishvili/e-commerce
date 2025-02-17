@@ -11,7 +11,8 @@ export async function generateToken (id) {
     return token;
 }
 
-export async function verifyToken() {
+export async function decodeToken() {
+  
     const cookieStore = await cookies();
     const token = cookieStore.get("token")?.value;
   
