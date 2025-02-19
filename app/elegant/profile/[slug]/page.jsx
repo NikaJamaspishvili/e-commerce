@@ -7,8 +7,12 @@ import Account from "@/components/profile/Account";
 import Logout from "@/components/profile/Logout";
 import Conditional from "@/components/profile/Conditional";
 
+import { FetchProfileData } from "@/actions/fetch/fetchFunctions";
+
 const page = ({params}) => {
-   
+
+ let data = FetchProfileData();
+  
  const resolvedParams = use(params);
  const value = resolvedParams.slug;
 
