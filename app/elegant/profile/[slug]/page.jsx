@@ -20,7 +20,7 @@ const page = async ({params}) => {
       <section className="w-5/6 mx-auto md:flex md:gap-16 md:mt-16">
      <Menu value={slug} data={data}/>
 
-    {slug === "account" && <Account />}
+    {slug === "account" && <Account data={data}/>}
     {slug === "logout" && <Logout />}
     {/* this checks which route user is on and renders components dynamically */}
     <Conditional variable={slug}/>
