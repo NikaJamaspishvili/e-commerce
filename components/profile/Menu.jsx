@@ -1,8 +1,9 @@
 "use client";
 import { redirect } from 'next/navigation';
+import { revalidateCache } from '@/actions/fetch/fetchFunctions';
 
-function Menu({value}) {
-
+function Menu({value,data}) {
+   
   const array = [
     { value: "account", label: "Account" },
     { value: "orders", label: "Orders" },
@@ -19,10 +20,10 @@ function Menu({value}) {
        
        <div className="text-center flex flex-col items-center">
          <section className="relative">
-          <img className="w-[100px] h-[100px] rounded-full" src="/login_assets/chair.jpg" alt="profile image" />
-          <img className="absolute right-0 bottom-0" src="/icons/Camera.svg" alt="camera icon" />
+          <img className="w-[100px] h-[100px] rounded-full" src={data ? data[0].image : "/icons/Profile.svg"} alt={`profile image: ${data && data[0].username}`} />
+          <img className="absolute right-0 bottom-0" src="/icons/Camera.svg" alt="camera icon" onClick={()=>revalidateCache('profile')}/>
          </section>
-         <h1 className="font-inter font-semibold text-lg tracking-wider mt-3">Sofia Havertz</h1>
+         <h1 className="font-inter font-semibold text-lg tracking-wider mt-3">{data && data[0].username}</h1>
        </div>
  
        <select onChange={(e)=>{redirect('/elegant/profile/'+e.target.value)}} className="md:hidden font-inter font-semibold text-sm p-3 rounded-lg border-2 text-primaryBlack border-primaryGray w-full mt-8">

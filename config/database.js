@@ -1,7 +1,7 @@
 import mysql from "mysql2/promise";
+import { unstable_cache } from "next/cache";
 
-export async function callDatabase(query,data) {
-
+ export async function callDatabase(query,data) {
     try {
     
     const db = await mysql.createConnection({
@@ -16,7 +16,8 @@ export async function callDatabase(query,data) {
     const [result] = await db.execute(query,data);
     
     await db.end();
-    
+    console.log('queried from database...):',result);
+
     return result;
     
     } catch (error) {
@@ -27,4 +28,8 @@ export async function callDatabase(query,data) {
     
     }
     
-    }
+}
+
+//these variables define the different query functions with caching enabled.
+
+export const QueryMenuData = unstable_cache(callDatabase,['profile'],{tags:['profile']});
