@@ -1,6 +1,6 @@
 "use server";
 
-import { QueryMenuData } from "@/config/database";
+import { QueryProfileData } from "@/config/database";
 import { decodeToken } from "../auth/token";
 import { revalidateTag } from "next/cache";
 
@@ -12,7 +12,7 @@ export const FetchProfileData = async () => {
       
     const query = "SELECT image,username,email FROM users WHERE id = ?";
    
-    let data = await QueryMenuData(query,[userId]);
+    let data = await QueryProfileData(query,[userId]);
     return data;
 }
 
