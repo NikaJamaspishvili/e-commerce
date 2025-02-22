@@ -1,7 +1,9 @@
 "use server";
 
+import Loader from "../loader/Loader";
+
 function Account({data}) {
-  if(!data) return <div>Loading...</div>
+  if(!data) return <Loader />
   return (
     <div className="flex flex-col w-full mt-10 gap-8 mb-10 md:mt-0">
       <h1 className="font-inter font-semibold text-[#000000] text-center md:text-left text-3xl md:text-2xl">Account Details</h1>

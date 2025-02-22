@@ -9,7 +9,7 @@ const DynamicProducts = dynamic(()=>import('./Products'),{ssr:false,loading:()=>
 function Conditional({variable}) {
 
  if(variable === "orders"){
-   return <DynamicOrders/>
+   return <DynamicOrders />
  }else if(variable === "myproducts"){
     return <DynamicProducts/>
  }

@@ -5,7 +5,7 @@ import Account from "@/components/profile/Account";
 import Logout from "@/components/profile/Logout";
 import Conditional from "@/components/profile/Conditional";
 
-import { FetchProfileData } from "@/actions/fetch/fetchFunctions";
+import { FetchProfileData } from "@/actions/query/fetchFunctions";
 
 const page = async ({params}) => {
 

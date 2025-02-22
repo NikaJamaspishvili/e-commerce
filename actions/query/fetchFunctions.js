@@ -1,6 +1,6 @@
 "use server";
 
-import { QueryProfileData } from "@/config/database";
+import { callDatabase,QueryProfileData } from "@/config/database";
 import { decodeToken } from "../auth/token";
 import { revalidateTag } from "next/cache";
 

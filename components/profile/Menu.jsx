@@ -1,6 +1,6 @@
 "use client";
 import { redirect } from 'next/navigation';
-import { revalidateCache } from '@/actions/fetch/fetchFunctions';
+import { revalidateCache } from '@/actions/query/fetchFunctions';
 
 function Menu({value,data}) {
    
