@@ -6,6 +6,7 @@ import Logout from "@/components/profile/Logout";
 import Conditional from "@/components/profile/Conditional";
 
 import { FetchProfileData } from "@/actions/query/fetchFunctions";
+import AddProducts from "@/components/profile/AddProducts";
 
 const page = async ({params}) => {
 
@@ -22,6 +23,7 @@ const page = async ({params}) => {
 
     {slug === "account" && <Account data={data}/>}
     {slug === "logout" && <Logout />}
+    {slug === "addproducts" && <AddProducts />}
     {/* this checks which route user is on and renders components dynamically */}
     <Conditional variable={slug}/>
 

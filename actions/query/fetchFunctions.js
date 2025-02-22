@@ -16,6 +16,10 @@ export const FetchProfileData = async () => {
     return data;
 }
 
+export const FetchOrdersData = async ()=>{
+  
+}
+
 export async function revalidateCache(tag){
   revalidateTag(tag);
 }

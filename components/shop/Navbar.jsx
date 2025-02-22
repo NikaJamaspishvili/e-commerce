@@ -42,7 +42,7 @@ function Navbar() {
       <section className="hidden md:flex gap-8 text-lg font-spaceGrotesk text-primaryGray">
        <p className="text-primaryBlack cursor-pointer borderBottomAnimation" onClick={()=>redirect('home')}>Home</p>
        <p className="cursor-pointer borderBottomAnimation" onClick={()=>redirect('shop')}>Shop</p>
-       <p className="cursor-pointer borderBottomAnimation" onClick={()=>redirect('profile/addproduct')}>Add product</p>
+       <p className="cursor-pointer borderBottomAnimation" onClick={()=>redirect('profile/addproducts')}>Add product</p>
        <p className="cursor-pointer borderBottomAnimation" onClick={()=>redirect('contact')}>Contact us</p>
       </section>
  
@@ -58,7 +58,7 @@ function Navbar() {
   <div className="mt-8 border-t-2 border-b-2 w-full py-8 flex flex-col text-center items-center gap-10 text-4xl font-spaceGrotesk text-primaryGray">
        <p onClick={()=>redirect('home')} className="text-primaryBlack cursor-pointer">Home</p>
        <p onClick={()=>redirect('shop')} className="cursor-pointer">Shop</p>
-       <p onClick={()=>redirect('profile/addproduct')} className="cursor-pointer">Add product</p>
+       <p onClick={()=>redirect('profile/addproducts')} className="cursor-pointer">Add product</p>
        <p onClick={()=>redirect('contact')} className="cursor-pointer">Contact us</p>
        <section className="flex gap-8 text-5xl text-primaryBlack">
        <img onClick={()=>redirect('shop/search')} width={50} className="cursor-pointer mr-3" src="/icons/Search.svg" alt="search icon" />
