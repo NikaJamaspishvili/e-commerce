@@ -1,6 +1,6 @@
 "use server";
 
-import Loader from "../loader/Loader";
+import Loader from "../reusable/Loader";
 
 function Account({data}) {
   if(!data) return <Loader />

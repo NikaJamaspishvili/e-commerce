@@ -1,7 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import Loader from "../loader/Loader";
+import Loader from "../reusable/Loader";
 
 const DynamicOrders = dynamic(()=>import('./Orders'),{ssr:false,loading:()=><Loader />});
 const DynamicProducts = dynamic(()=>import('./Products'),{ssr:false,loading:()=><Loader />});

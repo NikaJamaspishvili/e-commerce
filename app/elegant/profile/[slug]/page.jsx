@@ -3,6 +3,7 @@
 import Menu from "@/components/profile/Menu";
 import Account from "@/components/profile/Account";
 import Logout from "@/components/profile/Logout";
+import AddProducts from "@/components/profile/AddProducts";
 
 import Conditional from "@/components/profile/Conditional";
 
@@ -13,7 +14,7 @@ const page = async ({params}) => {
  const { slug } = await params;
  
  const data = await FetchProfileData();
- console.log(data);
+ //console.log(data);
 
   return (
     <div className="pt-40 max-w-[500px] mx-auto md:max-w-none md:mx-0">
@@ -23,6 +24,7 @@ const page = async ({params}) => {
 
     {slug === "account" && <Account data={data}/>}
     {slug === "logout" && <Logout />}
+    {slug === "addproducts" && <AddProducts />}
     {/* this checks which route user is on and renders components dynamically */}
     <Conditional variable={slug}/>
 
