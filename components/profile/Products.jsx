@@ -1,8 +1,11 @@
 "use client";
 
 import { FaPlus } from "react-icons/fa";
+import { useRouter } from 'next/navigation';
 
 function Products() {
+
+ let router = useRouter();
 
  let array = [
   {name:"Tray table",categories:["Bedroom","LivingRoom"],img:"/login_assets/chair.jpg",price:"$19.19"},
@@ -16,7 +19,7 @@ function Products() {
     <div className="w-full mt-10 md:mt-0">
       <div className="flex w-full justify-between items-center">
       <h1 className="font-inter font-semibold md:text-2xl text-3xl  text-[#000000]">My Products</h1>
-      <label className="text-2xl text-white p-2 rounded-full bg-primaryGreen cursor-pointer"><FaPlus /></label>
+      <label onClick={()=>{router.push('/elegant/profile/addproducts')}} className="text-2xl text-white p-2 rounded-full bg-primaryGreen cursor-pointer"><FaPlus /></label>
       </div>
      {window.innerWidth > 1024 ? <div className="w-full mt-10">
        <table className="w-full table-fixed">

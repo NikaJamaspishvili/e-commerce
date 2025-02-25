@@ -75,7 +75,6 @@ function AddProducts() {
 
 
   return <form action={action} className="w-full flex flex-col gap-5 items-center mt-8">
-
         <section className="grid grid-cols-1 w-full justify-items-center lg:grid-cols-3 gap-5">
          {imagePreviews.map((result, index) => {
           if(result === ""){

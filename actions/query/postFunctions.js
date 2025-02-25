@@ -3,6 +3,8 @@
 import { redirect } from "next/navigation";
 
 import { uploadImage } from "../other/cloudinary";
+import { callDatabase } from "@/config/database";
+import { decodeToken } from "../auth/token";
 
 import { addProductsSchema } from "@/config/schema";
 
@@ -50,7 +52,26 @@ export async function Addproducts(array,state,formData) {
 
  //insert product details to database
 
- const insertQuery = "INSERT INTO products (product_name,product_price,product_condition,product_description,product_category,product_image) VALUES (?,?,?,?,?,?)";
+ const insertQuery = "INSERT INTO products (name, description, photos, price, `condition`, model, category, userId) VALUES (?,?,?,?,?,?,?,?)";
 
-//redirect('/elegant/profile/myproducts');
+ //decode the token and get the user id
+
+ let token = await decodeToken();
+ const userId = token.userId;
+
+ const insertResult = await callDatabase(insertQuery,
+  [
+  productName, 
+  productDescription, 
+  JSON.stringify(publicId), 
+  productPrice, 
+  productCondition,
+  "null", 
+  JSON.stringify(productCategory), 
+  userId
+  ]);
+
+ //console.log(insertResult);
+
+ redirect('/elegant/profile/myproducts');
 }
