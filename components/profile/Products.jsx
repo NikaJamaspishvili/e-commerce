@@ -2,10 +2,22 @@
 
 import { FaPlus } from "react-icons/fa";
 import { useRouter } from 'next/navigation';
+import { useActionState, useEffect,useRef } from "react";
+
+import { FetchProductsData } from "@/actions/query/fetchFunctions";
 
 function Products() {
 
+ const [state,action,isPending] = useActionState(FetchProductsData,null);
+
+
+ let btnRef = useRef(); 
  let router = useRouter();
+
+ useActionState(()=>{
+   btnRef.current.click();
+ },[]);
+
 
  let array = [
   {name:"Tray table",categories:["Bedroom","LivingRoom"],img:"/login_assets/chair.jpg",price:"$19.19"},
@@ -79,7 +91,8 @@ function Products() {
          <button className="py-3 rounded-xl bg-red-500 text-white">Delete</button>
           </div>
         })}
-        </section> 
+        </section>
+        <button ref={btnRef} onClick={action} hidden>Submit Button</button> 
       </section>
 }
     </div>
