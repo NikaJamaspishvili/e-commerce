@@ -11,6 +11,8 @@ import { FetchProfileData } from "@/actions/query/fetchFunctions";
 
 const page = async ({params}) => {
 
+ //await new Promise((resolve) => setTimeout(resolve,1000));
+
  const { slug } = await params;
  
  const data = await FetchProfileData();

@@ -2,11 +2,12 @@
 
 import { redirect } from "next/navigation";
 
-import { uploadImage } from "../other/cloudinary";
+import { uploadImage,deleteImage } from "../other/cloudinary";
 import { callDatabase } from "@/config/database";
 import { decodeToken } from "../auth/token";
 
 import { addProductsSchema } from "@/config/schema";
+import { revalidateTag } from "next/cache";
 
 export async function Addproducts(array,state,formData) {
 
@@ -44,7 +45,7 @@ export async function Addproducts(array,state,formData) {
  for(let image of productImage){
  if(image){
   let file = image.file;
-  let result = await uploadImage(file);
+  let result = await uploadImage(file,"product-images");
 
   publicId.push(result.public_id);
  }
@@ -72,6 +73,40 @@ export async function Addproducts(array,state,formData) {
   ]);
 
  //console.log(insertResult);
-
+ revalidateTag('products');
  redirect('/elegant/profile/myproducts');
+}
+
+
+
+
+
+export async function updateProfileImage(file,previousImageId){
+
+ //get the userId
+
+ let token = await decodeToken();
+ const userId = token.userId;
+
+ //upload image to the cloudinary and obtain the public id
+ let result = await uploadImage(file,"profile-images");
+ console.log("updating profile, image result: ",result);
+
+ //delete previous image fromt the cloudinary and continue...
+console.log("previousImageId: ",previousImageId);
+ if(previousImageId !== null){
+  await deleteImage(previousImageId);
+ }
+
+//update the profile image in the database
+
+ const updateQuery = "UPDATE users SET image = ? WHERE id = ?";
+
+ const updateResult = await callDatabase(updateQuery,[result.public_id,userId]);
+
+ //revalidate the profile query
+ revalidateTag('profile');
+
+ console.log("updating profile, update result: ",updateResult);
+
 }

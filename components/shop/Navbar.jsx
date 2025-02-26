@@ -19,6 +19,9 @@ function Navbar() {
 
  function redirect(route){
     router.push('/elegant/'+route);
+    if(showMenu){
+      setShowMenu(false);
+   }
  }
 
  return <div className="fixed flex w-full flex-col items-center cursor-default bg-white z-10">

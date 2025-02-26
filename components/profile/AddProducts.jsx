@@ -78,7 +78,7 @@ function AddProducts() {
         <section className="grid grid-cols-1 w-full justify-items-center lg:grid-cols-3 gap-5">
          {imagePreviews.map((result, index) => {
           if(result === ""){
-            return <div className="cursor-pointer w-3/5 lg:w-full border-primaryGray rounded-md flex flex-col gap-4 p-5 items-center justify-center" key={index} onClick={()=> imageInputRef.current.click()}>
+            return <div className="cursor-pointer w-3/5 lg:w-full flex flex-col gap-4 p-5 items-center justify-center border border-primaryGray rounded-md shadow-xl" key={index} onClick={()=> imageInputRef.current.click()}>
             <h1 className="text-center font-semibold font-inter text-lg">{index === 0 ? "Upload Cover Image" : "Upload Product Image"}</h1>
             <img src="/icons/ImageHolder.svg" className="w-[80px]"/>
           </div>

@@ -33,4 +33,5 @@ import { unstable_cache } from "next/cache";
 //these variables define the different query functions with caching enabled.
 
 export const QueryProfileData = unstable_cache(callDatabase,['profile'],{tags:['profile']});
-export const QueryProductsData = unstable_cache(callDatabase,['products'],{tags:"products"});
+export const QueryProductsData = unstable_cache(callDatabase,['products'],{tags:["products"]});
+export const QueryAllProductsData = unstable_cache(callDatabase,['allProducts'],{tags:"allProducts"});
