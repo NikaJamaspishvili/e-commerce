@@ -67,7 +67,7 @@ function Products() {
          {data.map((result,index)=>{
           return <tr key={index} className="mt-2 text-left text-primaryBlack font-inter border-b-2 border-[#E8ECEF]">
           <td className="py-6 font-light flex gap-3">
-            <CldImage priority className="w-auto h-auto" width="100" height="600" src={JSON.parse(result.photos)?.[0]} alt={result.name} />
+            <CldImage priority className="w-auto h-auto" width={100} height={100} crop={"auto"} src={JSON.parse(result.photos)?.[0]} alt={result.name} />
             <div className="flex flex-col gap-3 ">
             <p className="font-semibold">{result.name}</p>
            

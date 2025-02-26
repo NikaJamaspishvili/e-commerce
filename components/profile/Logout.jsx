@@ -1,5 +1,4 @@
 import { logOutAction } from "@/actions/query/deleteFunctions"
-
 function Logout() {
 
 //using form to keep this a server component and still make the server action work

@@ -40,7 +40,7 @@ function handleUpload(file,previousImageId){
        <div className="text-center flex flex-col items-center">
          <section onClick={()=>btnUploaderRef.current.click()} className=" relative cursor-pointer hover:before:flex before:font-inter before:hidden before:tracking-wider before:bg-primaryBlack/50 backdrop-blur-lg before:text-white before:items-center before:justify-center before:w-full before:left-0 before:rounded-full before:h-full before:content-['EDIT'] before:absolute">
          {isPending ? <Loader /> : <>
-          {data && data[0].image ? <CldImage width={100} height={100} priority className="w-auto h-auto rounded-full" src={data[0].image} alt={`${data && data[0].username}`} /> : <img className='w-[100px] h-[100px] rounded-full' src="/icons/Profile.svg" alt="profile icon" />}
+          {data && data[0].image ? <CldImage width={100} height={100} crop={"auto"} priority className="w-auto h-auto rounded-full" src={data[0].image} alt={`${data && data[0].username}`} /> : <img className='w-[100px] h-[100px] rounded-full' src="/icons/Profile.svg" alt="profile icon" />}
           <img className="absolute right-0 bottom-0" src="/icons/Camera.svg" alt="camera icon"/>
           </>
          }

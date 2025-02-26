@@ -34,4 +34,4 @@ import { unstable_cache } from "next/cache";
 
 export const QueryProfileData = unstable_cache(callDatabase,['profile'],{tags:['profile']});
 export const QueryProductsData = unstable_cache(callDatabase,['products'],{tags:["products"]});
-export const QueryAllProductsData = unstable_cache(callDatabase,['allProducts'],{tags:"allProducts"});
+export const QueryAllProductsData = unstable_cache(callDatabase,['allProducts'],{revalidate:360});

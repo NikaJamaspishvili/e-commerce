@@ -33,6 +33,7 @@ export const FetchProductsData = async () => {
 }
 
 export const FetchAllProductsData = async () => {
+
    try{
 
     const query = "SELECT * FROM products LIMIT 8";
@@ -48,4 +49,12 @@ export const FetchAllProductsData = async () => {
 }
 export async function revalidateCache(tag){
   revalidateTag(tag);
+}
+
+export const FetchProductsDataByCategory = async (category) => {
+
+
+
+
+
 }

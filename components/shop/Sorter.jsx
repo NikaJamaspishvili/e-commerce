@@ -5,6 +5,26 @@ import { useState } from "react"
 function Sorter() {
 
  const [showPrice,setShowPrice] = useState(false);
+ const [categoryVariable,setCategoryVariable] = useState('');
+
+ const [priceFrom,setPriceFrom] = useState(0);
+ const [priceTo,setPriceTo] = useState(0);
+ const [error,setError] = useState(false);
+
+
+function handleSubmit(e){
+    e.preventDefault();
+     console.log("start:  ",priceFrom,priceTo);
+    if(priceFrom >= priceTo){
+        setError(true);
+    }else{
+        setError(false);
+        setShowPrice(false);
+        setPriceFrom(0);
+        setPriceTo(0);
+        console.log(error);
+    }
+}
 
   return (
     <div className="w-full mt-8">
@@ -14,7 +34,7 @@ function Sorter() {
     <div className="w-full md:w-[50%] flex flex-col md:flex-row md:items-center gap-5">
     <div className="flex flex-col gap-2 w-full">
         <label className="text-primaryGray text-md md:hidden font-inter">CATEGORIES:</label>
-        <select className="border-2 border-black font-inter outline-none rounded-md w-full p-4 text-primaryBlack cursor-pointer" onChange={(e)=>{console.log(e.target.value)}}>
+        <select className="border-2 border-black font-inter outline-none rounded-md w-full p-4 text-primaryBlack cursor-pointer" onChange={(e)=>{setCategoryVariable(e.target.value)}}>
             <option value="living-room">Living Room</option>
             <option value="bedroom">Bedroom</option>
             <option value="dining-room">Dining Room</option>
@@ -30,15 +50,15 @@ function Sorter() {
         <img width={9} src="/icons/CarretDown.svg" alt="CarretDown Symbol" />
         </div>
 
-    {showPrice && <form className="z-10 absolute top-auto left-0 border-2 border-black p-4 bg-white mt-2 rounded-md w-full">
+    {showPrice && <form onSubmit={handleSubmit} className="z-10 absolute top-auto left-0 border-2 border-black p-4 bg-white mt-2 rounded-md w-full">
             <div className="flex flex-col gap-4">
             
-            <input className="h-12 rounded pl-4 bg-[#F3F5F7] outline-none text-primaryBlack" type="number" placeholder="From..."  min={0}/>
+            <input value={priceFrom} onChange={(e)=>setPriceFrom(e.target.value)} required className="h-12 rounded pl-4 bg-[#F3F5F7] outline-none text-primaryBlack" type="number" placeholder="From..."  min={0}/>
             
-            <input className="h-12 rounded pl-4 bg-[#F3F5F7] outline-none" type="number" placeholder="To..." min={1} />
+            <input value={priceTo} onChange={(e)=>setPriceTo(e.target.value)} required className="h-12 rounded pl-4 bg-[#F3F5F7] outline-none" type="number" placeholder="To..." min={1} />
            
             </div>
-
+            {error && <p className="font-inter text-errorColor text-center text-sm m-1">First price must be lower than second price</p>}
             <button className="mt-4 w-full rounded-md p-3 font-inter text-white bg-primaryGreen">Apply</button>
         </form>
     }
