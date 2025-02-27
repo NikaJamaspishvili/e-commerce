@@ -32,11 +32,29 @@ export const FetchProductsData = async () => {
   }
 }
 
-export const FetchAllProductsData = async () => {
+export const FetchAllProductsData = async (category,price) => {
+
+  const query = "SELECT * FROM products LIMIT 8";
+
 
    try{
+ 
+    if(category === undefined && price === undefined){
+      console.log('fetch all');
+      
+    }
 
-    const query = "SELECT * FROM products LIMIT 8";
+    if(category === "null"){
+      console.log('fetch based on the price');
+    }
+
+    if(price === "null"){
+      console.log('fetch based on the category');
+    }
+
+    if(price !== "null" && price !== undefined && category !== "null" && category !== undefined){
+      console.log('fetch based on the category and price');
+    }
 
     const data = await QueryAllProductsData(query,[]);
 
@@ -49,12 +67,4 @@ export const FetchAllProductsData = async () => {
 }
 export async function revalidateCache(tag){
   revalidateTag(tag);
-}
-
-export const FetchProductsDataByCategory = async (category) => {
-
-
-
-
-
 }

@@ -4,9 +4,15 @@ import SketelonUI from "../reusable/SketelonUI";
 
 import { FetchAllProductsData } from "@/actions/query/fetchFunctions";
 
-async function Items() {
+async function Items({searchParams,}) {
 
- const array = await FetchAllProductsData();
+ //define the url parameters
+ const category = await searchParams.category;
+ const price = await searchParams.price;
+
+ console.log(category,price);
+
+ const array = await FetchAllProductsData(category,price);
 
 //  console.log(array);
 

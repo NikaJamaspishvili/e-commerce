@@ -1,30 +1,29 @@
 "use client";
 
 import { useState } from "react"
+import { useRouter } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 
 function Sorter() {
 
+ const router = useRouter(
+    {scroll: false}
+ );
+
+ const searchParams = useSearchParams();
+ const category =searchParams.get('category');
+ const price = searchParams.get('price');
+
  const [showPrice,setShowPrice] = useState(false);
- const [categoryVariable,setCategoryVariable] = useState('');
 
- const [priceFrom,setPriceFrom] = useState(0);
- const [priceTo,setPriceTo] = useState(0);
- const [error,setError] = useState(false);
+ const [firstInput,setFirstInput] = useState(0);
+ const [secondInput,setSecondInput] = useState(0);
 
 
-function handleSubmit(e){
-    e.preventDefault();
-     console.log("start:  ",priceFrom,priceTo);
-    if(priceFrom >= priceTo){
-        setError(true);
-    }else{
-        setError(false);
-        setShowPrice(false);
-        setPriceFrom(0);
-        setPriceTo(0);
-        console.log(error);
-    }
-}
+ function handleSubmit(e){
+    e.preventDefault(); 
+    router.push(`?category=${category}&price=${[firstInput,secondInput]}`);
+ }
 
   return (
     <div className="w-full mt-8">
@@ -34,7 +33,7 @@ function handleSubmit(e){
     <div className="w-full md:w-[50%] flex flex-col md:flex-row md:items-center gap-5">
     <div className="flex flex-col gap-2 w-full">
         <label className="text-primaryGray text-md md:hidden font-inter">CATEGORIES:</label>
-        <select className="border-2 border-black font-inter outline-none rounded-md w-full p-4 text-primaryBlack cursor-pointer" onChange={(e)=>{setCategoryVariable(e.target.value)}}>
+        <select className="border-2 border-black font-inter outline-none rounded-md w-full p-4 text-primaryBlack cursor-pointer" onChange={(e)=>{router.push(`?category=${e.target.value}&price=${price}`)}}>
             <option value="living-room">Living Room</option>
             <option value="bedroom">Bedroom</option>
             <option value="dining-room">Dining Room</option>
@@ -53,12 +52,15 @@ function handleSubmit(e){
     {showPrice && <form onSubmit={handleSubmit} className="z-10 absolute top-auto left-0 border-2 border-black p-4 bg-white mt-2 rounded-md w-full">
             <div className="flex flex-col gap-4">
             
-            <input value={priceFrom} onChange={(e)=>setPriceFrom(e.target.value)} required className="h-12 rounded pl-4 bg-[#F3F5F7] outline-none text-primaryBlack" type="number" placeholder="From..."  min={0}/>
+            <input onChange={(e)=>setFirstInput(e.target.value)} required className="h-12 rounded pl-4 bg-[#F3F5F7] outline-none text-primaryBlack" type="number" placeholder="Min"  min={10}/>
             
-            <input value={priceTo} onChange={(e)=>setPriceTo(e.target.value)} required className="h-12 rounded pl-4 bg-[#F3F5F7] outline-none" type="number" placeholder="To..." min={1} />
+            <input onChange={(e)=>setSecondInput(e.target.value)} className="h-12 rounded pl-4 bg-[#F3F5F7] outline-none" type="number" placeholder="Max" min={Number(firstInput) + 1} />
            
             </div>
-            {error && <p className="font-inter text-errorColor text-center text-sm m-1">First price must be lower than second price</p>}
+           <div className="flex flex-col gap-2 mt-4">
+            <p className="text-primaryGray font-inter font-light">Min: <span className="font-bold text-primaryBlack">{firstInput > 0 ? firstInput + '$': 0}</span></p>
+            <p className="text-primaryGray font-inter font-light gap-1">Max: <span className="font-bold text-primaryBlack">{secondInput > 0 ? secondInput + '$' : '\u221E'}</span></p> 
+           </div>
             <button className="mt-4 w-full rounded-md p-3 font-inter text-white bg-primaryGreen">Apply</button>
         </form>
     }
