@@ -28,14 +28,15 @@ function AddProducts() {
   }, [isPending]);
 
   let imageInputRef = useRef();
+
   let inputCategoryArray = [
-   "Bedroom",
-   "Living Room",
-   "Kitchen",
-   "Dining Room",
-   "Bathroom",
-   "Storage Room"
-  ];
+    {name:"Bedroom",value:"bedroom"},
+    {name:"Living Room",value:"living-room"},
+    {name:"Kitchen",value:"kitchen"},
+    {name:"Dining Room",value:"dining-room"},
+    {name:"Bathroom",value:"bathroom"},
+    {name:"Storage Room",value:"storage-room"}
+   ];
 
   async function handleFileChange(event) {
   let array = [...imagePreviews];
@@ -66,7 +67,7 @@ function AddProducts() {
     if(categoryExists){
       array = array.filter(result => result !== inputCategoryArray[index]);
     }else{
-      array.push(inputCategoryArray[index]);
+      array.push(inputCategoryArray[index].value);
     }
 
     console.log(array);
@@ -125,7 +126,7 @@ function AddProducts() {
       {inputCategoryArray.map((result, index) => {
       return  <div key={index} className="flex gap-2 items-center">
       <input onClick={()=>handleCategoryClick(index)} type="checkbox" className="border-2 text-primaryGray outline-none p-1 w-5 h-5 cursor-pointer" placeholder="cehckbox" />
-      <label className="text-primaryGray font-inter">{result}</label>
+      <label className="text-primaryGray font-inter">{result.name}</label>
       </div>
       })}
        </section>

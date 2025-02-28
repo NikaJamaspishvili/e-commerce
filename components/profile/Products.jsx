@@ -70,9 +70,9 @@ function Products() {
             <CldImage priority className="w-auto h-auto" width={100} height={100} crop={"auto"} src={JSON.parse(result.photos)?.[0]} alt={result.name} />
             <div className="flex flex-col gap-3 ">
             <p className="font-semibold">{result.name}</p>
-           
+           {console.log(result.category)}
             <section className="flex flex-col gap-2">
-             {JSON.parse(result.category).map((result,index)=>{
+             {(result.category).map((result,index)=>{
                 return <p key={index} className="text-sm break-all">{result}</p>
               })}
             </section>
@@ -101,7 +101,7 @@ function Products() {
          <CldImage priority className="w-auto h-auto" width="100" height="600" src={JSON.parse(result.photos)?.[0]} alt={result.name} />
          <div className="flex flex-col gap-3 w-full">
           <p className="font-semibold">{result.name}</p>
-          {JSON.parse(result.category).map((result,index)=>{
+          {(result.category).map((result,index)=>{
           return <p key={index} className="font-light break-all text-sm text-primaryGray">{result},</p>
           })}
           <p className="mt-2 text-primaryBlack font-light">{result.price}$</p>

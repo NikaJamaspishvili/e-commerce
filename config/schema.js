@@ -23,3 +23,38 @@ export const authenticateLoginSchema = z.object({
    username: z.string().regex(/^[a-zA-Z0-9]*$/, {message: "Input must only contain letters and numbers",}).min(3, "Username must be at least 3 characters long").max(16, "Username must be at most 16 characters long"),
    password: z.string().trim().min(8, "Password must be at least 8 characters long").max(16, "Password must be at most 16 characters long"),
 })
+
+let correctValues = [
+  "bedroom",
+  "living-room",
+  "kitchen",
+  "dining-room",
+  "bathroom",
+  "storage-room"
+];
+
+
+export const validateCategory = z.object({
+   category: z.string().refine(val => correctValues.includes(val), "invalid category"),
+})
+
+export const validatePrice = z.object({
+   price: z.string().refine((val) => {
+    // Step 1: Split the string by comma
+    const array = val.split(',').map(Number);
+
+    // Step 2: Check that the array has exactly two elements
+    if (array.length !== 2) return false;
+
+    // Step 3: Ensure both elements are whole numbers greater than 0
+    if (!Number.isInteger(array[0]) || !Number.isInteger(array[1]) || array[0] <= 0 || array[1] <= 0) {
+      return false;
+    }
+
+    // Step 4: Ensure the first element is less than the second
+    if (array[0] >= array[1]) return false;
+
+    return true;
+  },"invalid price")
+})
+
