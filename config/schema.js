@@ -58,3 +58,7 @@ export const validatePrice = z.object({
   },"invalid price")
 })
 
+
+export const validateProductId = z.object({
+  id: z.number().positive("Product ID must be a positive number"),
+});

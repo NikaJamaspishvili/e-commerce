@@ -1,11 +1,10 @@
 "use server";
 
-import { callDatabase,QueryProfileData,QueryProductsData,QueryAllProductsData } from "@/config/database";
-import { validateCategory,validatePrice } from "@/config/schema";
+import { callDatabase,QueryProfileData,QueryProductsData,QueryAllProductsData,QueryProductById } from "@/config/database";
+import { validateCategory,validatePrice ,validateProductId} from "@/config/schema";
 
 import { decodeToken } from "../auth/token";
 import { revalidateTag } from "next/cache";
-import Products from "@/components/profile/Products";
 
 
 export const FetchProfileData = async () => {
@@ -123,6 +122,15 @@ export const FetchAllProductsData = async (category,price) => {
    }catch(err){
     console.log(err);
    }
+}
+
+export async function fetchProductById(id){
+
+  const query = "SELECT * FROM products WHERE id = ?";
+
+  const data = await QueryProductById(query,[id]);
+
+  return data;
 }
 
 export async function revalidateCache(tag){
