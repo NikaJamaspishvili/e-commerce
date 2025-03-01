@@ -8,7 +8,6 @@ import { notFound } from "next/navigation";
 
 import { fetchProductById } from "@/actions/query/fetchFunctions";
 import { validateProductId } from "@/config/schema";
-import { Elsie_Swash_Caps } from "next/font/google";
 
 const page = async ({params}) => {
 
@@ -25,10 +24,10 @@ const page = async ({params}) => {
   let data = await fetchProductById(id);
   if(data.length === 0) return notFound();
   
-  return <div className="pt-32">
-   <div className="flex">
-   <LeftSide />
-   <RightSide />
+  return <div className="pt-32 flex flex-col">
+   <div className="flex flex-col md:w-3/4 mx-auto md:flex-row gap-5 md:gap-10">
+   <LeftSide condition={data[0].condition} photos={data[0].photos}/>
+   <RightSide stars={data[0].stars} name={data[0].name} price={data[0].price} description={data[0].description}/>
    </div>
    <Comments />
     </div>

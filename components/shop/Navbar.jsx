@@ -24,7 +24,7 @@ function Navbar() {
    }
  }
 
- return <div className="fixed flex w-full flex-col items-center cursor-default bg-white z-10">
+ return <div className="fixed flex w-full flex-col items-center cursor-default bg-white z-20">
  
  {showDiscount && !pathName.startsWith('/elegant/shop') && <div className="md:justify-between w-screen p-3 flex gap-4 items-center justify-center text-[#343839] bg-[#F3F5F7] font-inter font-semibold">
     <div className="flex gap-6 md:mx-auto">

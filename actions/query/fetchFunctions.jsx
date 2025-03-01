@@ -1,6 +1,6 @@
 "use server";
 
-import { callDatabase,QueryProfileData,QueryProductsData,QueryAllProductsData,QueryProductById } from "@/config/database";
+import { callDatabase,QueryProfileData,QueryProductsData,QueryAllProductsData } from "@/config/database";
 import { validateCategory,validatePrice ,validateProductId} from "@/config/schema";
 
 import { decodeToken } from "../auth/token";
@@ -128,7 +128,7 @@ export async function fetchProductById(id){
 
   const query = "SELECT * FROM products WHERE id = ?";
 
-  const data = await QueryProductById(query,[id]);
+  const data = await callDatabase(query,[id]);
 
   return data;
 }
