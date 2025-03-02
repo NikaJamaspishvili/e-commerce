@@ -18,7 +18,7 @@ async function Items({searchParams,}) {
 
   return (
     <div className="flex flex-col w-full">
-    <div className="grid grid-cols-2 lg:grid-cols-4 md:grid-cols-3 max-[400px]:grid-cols-1 max-md:gap-8 gap-4 mt-10">
+    <div className="grid grid-cols-2 lg:grid-cols-4 md:grid-cols-3 max-[400px]:grid-cols-1 max-md:gap-8 gap-10 mt-10">
   {array.map((result,index)=>{
     return <Suspense key={index} fallback={<SketelonUI />}>
     <CardComponent result={result}/>

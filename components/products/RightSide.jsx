@@ -9,7 +9,7 @@ function RightSide({stars,name,description,price}) {
 
     <div className="flex gap-3">   
      <section className="flex">
-     {[...Array.from({length:5})].map((_,index) => {
+     {[...Array.from({length:stars})].map((_,index) => {
           if(index < stars){
             return <img src="/icons/Star.svg" className="w-4" key={index} alt="star icon" />
           }

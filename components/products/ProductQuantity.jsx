@@ -14,7 +14,7 @@ function ProductQuantity({price}) {
         <p className="font-inter font-semibold text-[#121212] text-2xl">{quantity}</p>
         <img src="/icons/Add.svg" className="w-7 cursor-pointer" onClick={()=>setQuantity(quantity+1)} />      
       </div>
-      <p className="font-inter flex justify-center items-center gap-2 font-light text-primaryBlack border-2 border-primaryGray w-full rounded-lg">Total Price: <span className="font-medium">${quantity*price}</span></p>
+      <p className="font-inter flex justify-center items-center gap-2 font-light text-primaryBlack border-2 border-primaryGreen w-full rounded-lg">Total Price: <span className="font-medium">${quantity*price}</span></p>
       </div>
 
       <button className="bg-primaryBlack text-white rounded-lg w-full h-12 font-inter font-medium text-lg">Add to Cart</button>

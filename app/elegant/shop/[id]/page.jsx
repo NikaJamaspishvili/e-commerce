@@ -6,15 +6,16 @@ import Comments from "@/components/products/Comments";
 
 import { notFound } from "next/navigation";
 
-import { fetchProductById } from "@/actions/query/fetchFunctions";
+import { fetchProductById,fetchComments } from "@/actions/query/fetchFunctions";
 import { validateProductId } from "@/config/schema";
 
-const page = async ({params}) => {
+const page = async ({params,searchParams}) => {
 
  //check if the id is valid
  //return the UI based on the id validation state
 
   const {id} = await params;
+  const { order } = await searchParams;
   
   const validationResult = validateProductId.safeParse({
     id: Number(id),
@@ -23,13 +24,13 @@ const page = async ({params}) => {
   if(!validationResult.success) return notFound();
   let data = await fetchProductById(id);
   if(data.length === 0) return notFound();
-  
+
   return <div className="pt-32 flex flex-col items-center">
    <div className="flex flex-col lg:w-3/4 lg:flex-row gap-5 md:gap-10">
    <LeftSide condition={data[0].condition} photos={data[0].photos}/>
    <RightSide stars={data[0].stars} name={data[0].name} price={data[0].price} description={data[0].description}/>
    </div>
-   <Comments />
+   <Comments productId={data[0].id} order={order}/>
     </div>
 
 }

@@ -6,8 +6,8 @@ import { uploadImage,deleteImage } from "../other/cloudinary";
 import { callDatabase } from "@/config/database";
 import { decodeToken } from "../auth/token";
 
-import { addProductsSchema } from "@/config/schema";
-import { revalidateTag } from "next/cache";
+import { addProductsSchema,validateComment } from "@/config/schema";
+import { revalidateTag,revalidatePath } from "next/cache";
 
 export async function Addproducts(array,state,formData) {
 
@@ -109,4 +109,38 @@ console.log("previousImageId: ",previousImageId);
 
  console.log("updating profile, update result: ",updateResult);
 
+}
+
+export async function insertNewComment(props,state,formData){
+
+ //validate the comment.
+ //insert the comment to the database.
+
+ const comment = formData.get("comment");
+
+ const token = await decodeToken();
+ const userId = token.userId;
+ 
+ const date = new Date();
+
+ console.log(comment,props,userId,date);
+
+ const validationResult = validateComment.safeParse({
+  comment: comment,
+  starCount: props.starCount,
+ });
+
+ if(!validationResult.success){
+  return {
+    errors: validationResult.error.flatten().fieldErrors,
+  }
+ }
+
+
+
+const insertQuery = "INSERT INTO comments (comment,rating,date,productId,userId) VALUES (?,?,?,?,?)";
+
+console.log(await callDatabase(insertQuery,[comment,props.starCount,date,props.productId,userId]));
+ 
+ revalidatePath(`/elegant/shop/${props.productId}`);
 }

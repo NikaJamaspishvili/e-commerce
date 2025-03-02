@@ -62,3 +62,8 @@ export const validatePrice = z.object({
 export const validateProductId = z.object({
   id: z.number().positive("Product ID must be a positive number"),
 });
+
+export const validateComment = z.object({
+  comment: z.string().trim().max(500, "Comment must be at most 500 characters long").min(50,"Comment must be at least 50 characters long").nonempty("Comment is required"),
+  starCount: z.number().min(1,"Rating is Required").max(5,"Rating must be at most 5 stars"),
+});

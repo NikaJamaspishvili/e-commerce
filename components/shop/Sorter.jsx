@@ -16,6 +16,7 @@ function Sorter() {
  const price = searchParams.get('price');
 
  let array = [
+    {name:"All",value:"all"},
     {name:"Bedroom",value:"bedroom"},
     {name:"Living Room",value:"living-room"},
     {name:"Kitchen",value:"kitchen"},
@@ -25,7 +26,6 @@ function Sorter() {
  ];
 
  const [showPrice,setShowPrice] = useState(false);
- const [inputCategoryArray,setInputCategoryArray] = useState([]);
 
  const [firstInput,setFirstInput] = useState(0);
  const [secondInput,setSecondInput] = useState(0);
@@ -35,21 +35,6 @@ function Sorter() {
     router.push(`?category=${category}&price=${[firstInput,secondInput]}`,{scroll:false});
     setShowPrice(false);
  }
-
-  function handleCategory(){
-    const index = array.findIndex(obj => obj.value === category);
-    // If the object is found
-    if (index !== -1) {
-      // Remove the object from the array
-      const [element] = array.splice(index, 1); 
-      
-      // Insert the object at the first position
-      array.unshift(element);
-      setInputCategoryArray(array);
-    }else{
-        setInputCategoryArray(array);
-    }
-}
 
 function handlePrice(){
     let validateResult = validatePrice.safeParse({
@@ -65,12 +50,6 @@ function handlePrice(){
 
 useEffect(()=>{
 
-    if(category && category !== 'null'){
-     handleCategory();
-    }else{
-        setInputCategoryArray(array);
-    }
-
     if(price && price !== 'null'){
         handlePrice();
     }
@@ -85,8 +64,8 @@ useEffect(()=>{
     <div className="w-full md:w-[50%] flex flex-col md:flex-row md:items-center gap-5">
     <div className="flex flex-col gap-2 w-full">
         <label className="text-primaryGray text-md md:hidden font-inter">CATEGORIES:</label>
-        <select className="border-2 border-black font-inter outline-none rounded-md w-full p-4 text-primaryBlack cursor-pointer" onChange={(e)=>{router.push(`?category=${e.target.value}&price=${price}`,{scroll:false})}}>
-            {inputCategoryArray.map((result,index)=>{
+        <select value={category || "all"} className="border-2 border-black font-inter outline-none rounded-md w-full p-4 text-primaryBlack cursor-pointer" onChange={(e)=>{router.push(`?category=${e.target.value}&price=${price}`,{scroll:false})}}>
+            {array.map((result,index)=>{
              return <option key={index} value={result.value}>{result.name}</option>
             })}
         </select>

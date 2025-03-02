@@ -1,10 +1,11 @@
 "use server";
 
-import { callDatabase,QueryProfileData,QueryProductsData,QueryAllProductsData } from "@/config/database";
+import { callDatabase,QueryProfileData,QueryProductsData,QueryAllProductsData,QueryAllCommentsData } from "@/config/database";
 import { validateCategory,validatePrice ,validateProductId} from "@/config/schema";
 
 import { decodeToken } from "../auth/token";
 import { revalidateTag } from "next/cache";
+import { trackSynchronousPlatformIOAccessInDev } from "next/dist/server/app-render/dynamic-rendering";
 
 
 export const FetchProfileData = async () => {
@@ -132,6 +133,27 @@ export async function fetchProductById(id){
 
   return data;
 }
+
+
+
+export async function fetchComments(productId,order){
+
+ //review count,image,username,starCount,comment,date
+
+ console.log(productId);
+
+ try{
+  const query =`SELECT comments.*, users.image AS image, users.username AS username FROM comments JOIN users ON comments.userId = users.id WHERE comments.productId = ? ORDER BY comments.date ${order === "newest" || !order ? "DESC" : order === "oldest" && "ASC"};`;
+  const data = await QueryAllCommentsData(query,[productId]);
+
+  return data;
+ }catch(err){
+  console.log(err);
+  return err;
+ }
+}
+
+
 
 export async function revalidateCache(tag){
   revalidateTag(tag);

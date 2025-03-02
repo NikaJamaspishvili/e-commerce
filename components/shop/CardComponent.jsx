@@ -1,10 +1,11 @@
 import ImageComponent from "./ImageComponent";
+import Overlay from "./Overlay";
 
 const CardComponent = async ({result}) => {
 
   return (
     <div key={result.id} className="relative group cursor-pointer flex flex-col gap-1">
-
+    <Overlay productId={result.id}/>
     <section className="hidden absolute left-3 top-1 font-inter font-bold md:group-hover:flex transition-all duration-75 ease-in flex-col gap-2">
         <p className="text-[#121212] bg-white p-1 px-2 rounded-md">{result.condition}</p>
         <p className="bg-primaryGreen rounded-md text-[#FEFEFE] p-1 text-center">-50%</p>
