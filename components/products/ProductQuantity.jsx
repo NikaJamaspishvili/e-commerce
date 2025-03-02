@@ -6,7 +6,7 @@ function ProductQuantity({price}) {
  const [quantity,setQuantity] = useState(1);
 
   return (
-    <section className="w-full flex flex-col gap-4 items-start md:border-t md:border-primaryGray pt-6 max-w-[500px] mt-10">
+    <section className="w-full flex flex-col gap-4 items-start md:border-t md:border-primaryGray pt-6 md:max-w-[500px] lg:mt-10 mt-5">
       
       <div className="flex w-full gap-3">
       <div className="flex justify-center bg-[#F5F5F5] rounded-lg p-4 gap-6">

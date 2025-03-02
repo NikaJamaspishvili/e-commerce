@@ -24,8 +24,8 @@ const page = async ({params}) => {
   let data = await fetchProductById(id);
   if(data.length === 0) return notFound();
   
-  return <div className="pt-32 flex flex-col">
-   <div className="flex flex-col md:w-3/4 mx-auto md:flex-row gap-5 md:gap-10">
+  return <div className="pt-32 flex flex-col items-center">
+   <div className="flex flex-col lg:w-3/4 lg:flex-row gap-5 md:gap-10">
    <LeftSide condition={data[0].condition} photos={data[0].photos}/>
    <RightSide stars={data[0].stars} name={data[0].name} price={data[0].price} description={data[0].description}/>
    </div>

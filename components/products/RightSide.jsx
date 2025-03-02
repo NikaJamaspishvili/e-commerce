@@ -5,7 +5,7 @@ function RightSide({stars,name,description,price}) {
   console.log(stars,name,description,price);
   
   return (
-    <div className="w-full md:w-full flex flex-col items-start gap-5">
+    <div className="w-full flex flex-col items-start gap-5">
 
     <div className="flex gap-3">   
      <section className="flex">
