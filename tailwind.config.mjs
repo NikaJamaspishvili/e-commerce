@@ -21,6 +21,9 @@ export default {
         primaryGreen: "#38CB89",
         errorColor: "#fc8181",
         linkColor: "#377DFF"
+      },
+      screens:{
+        'xsm':'400px',
       }
     },
   },

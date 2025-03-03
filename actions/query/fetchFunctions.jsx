@@ -1,11 +1,10 @@
 "use server";
 
-import { callDatabase,QueryProfileData,QueryProductsData,QueryAllProductsData,QueryAllCommentsData } from "@/config/database";
-import { validateCategory,validatePrice ,validateProductId} from "@/config/schema";
+import { callDatabase,QueryProfileData,QueryProductsData,QueryAllProductsData,QueryAllCommentsData,QueryUserIdFromComments } from "@/config/database";
+import { validateCategory,validatePrice } from "@/config/schema";
 
 import { decodeToken } from "../auth/token";
 import { revalidateTag } from "next/cache";
-import { trackSynchronousPlatformIOAccessInDev } from "next/dist/server/app-render/dynamic-rendering";
 
 
 export const FetchProfileData = async () => {
@@ -115,9 +114,9 @@ export const FetchAllProductsData = async (category,price) => {
 
    try{
  
-    const data = await QueryAllProductsData(query,[]);
+    const data = await callDatabase(query,[]);
 
-    console.log(data);
+   console.log(data);
     return data;
 
    }catch(err){
@@ -139,17 +138,21 @@ export async function fetchProductById(id){
 export async function fetchComments(productId,order){
 
  //review count,image,username,starCount,comment,date
+ let { userId } = await decodeToken();
 
  console.log(productId);
 
  try{
-  const query =`SELECT comments.*, users.image AS image, users.username AS username FROM comments JOIN users ON comments.userId = users.id WHERE comments.productId = ? ORDER BY comments.date ${order === "newest" || !order ? "DESC" : order === "oldest" && "ASC"};`;
+
+  const checkUserCommentProduct = `SELECT COUNT(*) AS count FROM comments WHERE productId = ? AND userId = ?`;
+  const count = await callDatabase(checkUserCommentProduct,[productId,userId]);
+
+  const query =`SELECT comments.*, users.image AS image, users.username AS username FROM comments JOIN users ON comments.userId = users.id WHERE comments.productId = ? ORDER BY comments.date ${order === "newest" || !order ? "DESC" : "ASC"};`;
   const data = await QueryAllCommentsData(query,[productId]);
 
-  return data;
+  return {data,count: count[0].count};
  }catch(err){
   console.log(err);
-  return err;
  }
 }
 

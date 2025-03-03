@@ -61,7 +61,7 @@ export async function login(state,formData){
 });
 
 // redirect user to shop page 
-redirect('/shop');
+redirect('/elegant/shop');
 
 }
 
@@ -119,7 +119,7 @@ export async function signup(state,formData){
  });
 
   // redirect user to shop page
-    redirect('/shop');
+    redirect('/elegant/shop');
 
 }
 

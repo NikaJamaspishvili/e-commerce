@@ -112,7 +112,6 @@ console.log("previousImageId: ",previousImageId);
 }
 
 export async function insertNewComment(props,state,formData){
-
  //validate the comment.
  //insert the comment to the database.
 
@@ -123,7 +122,7 @@ export async function insertNewComment(props,state,formData){
  
  const date = new Date();
 
- console.log(comment,props,userId,date);
+ //console.log(comment,props,userId,date);
 
  const validationResult = validateComment.safeParse({
   comment: comment,
@@ -135,12 +134,10 @@ export async function insertNewComment(props,state,formData){
     errors: validationResult.error.flatten().fieldErrors,
   }
  }
-
-
-
+ 
 const insertQuery = "INSERT INTO comments (comment,rating,date,productId,userId) VALUES (?,?,?,?,?)";
 
-console.log(await callDatabase(insertQuery,[comment,props.starCount,date,props.productId,userId]));
+await callDatabase(insertQuery,[comment,props.starCount,date,props.productId,userId]);
  
  revalidatePath(`/elegant/shop/${props.productId}`);
 }

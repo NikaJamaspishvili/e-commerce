@@ -1,7 +1,7 @@
 "use server";
 
 import { callDatabase } from "@/config/database";
-import { revalidateTag } from "next/cache";
+import { revalidateTag,revalidatePath } from "next/cache";
 import {redirect} from "next/navigation";
 import { cookies } from 'next/headers';
 
@@ -20,7 +20,7 @@ export const deleteProduct = async (id,arrayId)=>{
     
     await deleteImage(array);
 
-    revalidateTag("products");
+    revalidateTag("allProducts");
 }
 
 export const logOutAction = async ()=>{
@@ -30,4 +30,14 @@ export const logOutAction = async ()=>{
  const cookieStore = await cookies();
  cookieStore.delete("token");
  redirect('/register/signup');
+}
+
+export const deleteComment = async (props,state,formData)=>{
+    try{
+        const query = "DELETE FROM comments WHERE id = ?";
+        await callDatabase(query,[props.commentId]);
+        revalidatePath(`/elegant/shop/${props.productId}`);
+    }catch(err){
+     return {message:"something went wrong"}
+    }
 }

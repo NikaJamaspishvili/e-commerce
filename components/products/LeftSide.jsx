@@ -12,7 +12,6 @@ function LeftSide({condition,photos}) {
 
  let parsedPhotos = JSON.parse(photos);
 
- console.log(parsedPhotos.length,count);
   return <section className="flex justify-center w-full relative">
       <section className="absolute top-3 left-3 z-10 flex flex-col gap-2">
       <h1 className="flex justify-center items-center font-inter font-bold text-lg rounded-md bg-white text-[#121212]">{condition.toUpperCase()}</h1>

@@ -1,7 +1,6 @@
 "use client";
 
 import { Inter,Poppins,Space_Grotesk } from "next/font/google";
-import { SessionProvider } from "next-auth/react";
 import { usePathname } from "next/navigation";
 
 //component imports
