@@ -1,6 +1,6 @@
 "use server";
 
-import { callDatabase,QueryProfileData,QueryProductsData,QueryAllProductsData,QueryAllCommentsData,QueryUserIdFromComments } from "@/config/database";
+import { callDatabase,QueryProfileData,QueryProductsData,QueryAllCommentsData,QueryProductsFromCart } from "@/config/database";
 import { validateCategory,validatePrice } from "@/config/schema";
 
 import { decodeToken } from "../auth/token";
@@ -126,11 +126,19 @@ export const FetchAllProductsData = async (category,price) => {
 
 export async function fetchProductById(id){
 
+ let { userId } = await decodeToken();
+
   const query = "SELECT * FROM products WHERE id = ?";
 
-  const data = await callDatabase(query,[id]);
+  const queryProductCartStatus = "SELECT COUNT(*) as count FROM cart WHERE productId = ? AND userId = ?";
 
-  return data;
+
+  const data = await callDatabase(query,[id]);
+  const count = await callDatabase(queryProductCartStatus,[id,userId]);
+
+ console.log("count is: ",count);
+
+  return {data,count: count[0].count};
 }
 
 
@@ -154,6 +162,16 @@ export async function fetchComments(productId,order){
  }catch(err){
   console.log(err);
  }
+}
+
+export async function fetchCartData(){
+
+ let { userId } = await decodeToken();
+ 
+ let query = "SELECT cart.id, cart.productId, cart.userId, products.price, products.condition, products.name FROM cart JOIN products ON cart.productId = products.id WHERE cart.userId = ?;";
+
+ const data = await QueryProductsFromCart(query,[userId]);
+ return data;
 }
 
 

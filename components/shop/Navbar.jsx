@@ -6,8 +6,11 @@ import { IoMdClose } from "react-icons/io";
 import { useEffect, useState } from "react";
 import { useRouter,usePathname } from "next/navigation";
 
-import {FetchProfileData} from "@/actions/query/fetchFunctions";
 import ImageComponent from "./ImageComponent";
+import CartComponent from "./CartComponent";
+
+import { FetchProfileData } from "@/actions/query/fetchFunctions";
+
 
 function Navbar() {
 
@@ -21,10 +24,12 @@ function Navbar() {
     }
 
     test();
-  },[]);
+  },[]); 
 
  const [showDiscount,setShowDiscount] = useState(true);
  const [showMenu,setShowMenu] = useState(false);
+ const [showCart,setShowCart] = useState(false);
+
 
  const router = useRouter();
  const pathName = usePathname();
@@ -63,9 +68,8 @@ function Navbar() {
  
       <section className="flex items-center justify-center gap-4">
      <img onClick={()=>redirect('shop/search')} width={25} className="cursor-pointer" src="/icons/Search.svg" alt="search icon" />
-     <div className="relative">
-     <img onClick={()=>redirect('/elegant/profile')} width={35} className="cursor-pointer" src="/icons/Cart.svg" alt="Cart icon" />
-     <p className="text-sm absolute top-0 right-[-4px] bg-primaryBlack text-white rounded-full min-w-4 w-4 h-4 flex items-center justify-center">2</p>
+     <div className="relative z-50">
+     <img onClick={()=>setShowCart(!showCart)} width={35} className="cursor-pointer" src="/icons/Cart.svg" alt="Cart icon" />
      </div>
      {data?.[0]?.image ? <div onClick={()=>redirect('profile/account')} className="min-w-[50px]"><ImageComponent publicId={data[0].image} imageWidth={35} imageHeight={35} extraClasses="rounded-full cursor-pointer border"/></div> : <img src="/icons/Profile.svg" onClick={()=>redirect('profile/account')} width={35} className="cursor-pointer" alt="Profile icon" />}
       </section>
@@ -79,6 +83,8 @@ function Navbar() {
        <p onClick={()=>redirect('contact')} className="cursor-pointer font-light max-sm:text-2xl">Contact us</p>
   </div>
   }
+
+  {!showMenu && showCart && <CartComponent />}
     
     </div>
 

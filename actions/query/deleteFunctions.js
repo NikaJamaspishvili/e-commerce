@@ -41,3 +41,9 @@ export const deleteComment = async (props,state,formData)=>{
      return {message:"something went wrong"}
     }
 }
+
+export const removeCartItem = async (id)=>{
+    const query = "DELETE FROM cart WHERE id = ?";
+    await callDatabase(query,[id]);
+    revalidateTag("cart");
+}

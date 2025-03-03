@@ -1,7 +1,12 @@
 "use client";
 import { useState } from "react";
+import { useTransition } from "react";
+import { insertIntoCart } from "@/actions/query/postFunctions";
+import { redirect } from "next/navigation";
 
-function ProductQuantity({price}) {
+function ProductQuantity({price,count,productId}) {
+
+ const [pending,startTransition] = useTransition();
 
  const [quantity,setQuantity] = useState(1);
 
@@ -17,7 +22,9 @@ function ProductQuantity({price}) {
       <p className="font-inter flex justify-center items-center gap-2 font-light text-primaryBlack border-2 border-primaryGreen w-full rounded-lg">Total Price: <span className="font-medium">${quantity*price}</span></p>
       </div>
 
-      <button className="bg-primaryBlack text-white rounded-lg w-full h-12 font-inter font-medium text-lg">Add to Cart</button>
+      {count === 0 && <button onClick={()=>startTransition(async () => await insertIntoCart(productId))} className="bg-primaryBlack text-white rounded-lg w-full h-12 font-inter font-medium text-lg">{pending ? "Adding..." : "Add to Cart"}</button>}
+      {count > 0 && <button onClick={()=>redirect('/elegant/shop/cart')} className="bg-primaryBlack text-white rounded-lg w-full h-12 font-inter font-medium text-lg">Go to Cart</button>}
+
     </section>
   )
 }

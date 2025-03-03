@@ -22,13 +22,14 @@ const page = async ({params,searchParams}) => {
    });
  
   if(!validationResult.success) return notFound();
-  let data = await fetchProductById(id);
+  let {data,count} = await fetchProductById(id);
+
   if(data.length === 0) return notFound();
 
   return <div className="pt-32 flex flex-col items-center">
    <div className="flex flex-col lg:w-3/4 lg:flex-row gap-5 md:gap-10">
    <LeftSide condition={data[0].condition} photos={data[0].photos}/>
-   <RightSide stars={data[0].stars} name={data[0].name} price={data[0].price} description={data[0].description}/>
+   <RightSide stars={data[0].stars} name={data[0].name} price={data[0].price} description={data[0].description} count={count} productId = {id}/>
    </div>
    <Comments productId={data[0].id} order={order}/>
     </div>

@@ -141,3 +141,20 @@ await callDatabase(insertQuery,[comment,props.starCount,date,props.productId,use
  
  revalidatePath(`/elegant/shop/${props.productId}`);
 }
+
+export async function insertIntoCart(productId){
+
+
+ const { userId } = await decodeToken();
+
+
+ console.log(productId,userId)
+
+ const insertQuery = "INSERT INTO cart (productId,userId) VALUES (?,?)";
+
+ await callDatabase(insertQuery,[productId,userId]);
+
+ console.log('inserted into cart');
+
+ revalidateTag("cart");
+}
