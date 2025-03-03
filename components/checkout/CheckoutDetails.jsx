@@ -1,9 +1,12 @@
-import { redirect } from "next/navigation"
+import { insertIntoOrders } from "@/actions/query/postFunctions"
 import CheckoutForm from "./CheckoutForm"
 
 function CheckoutDetails({total}) {
+
+  const updatedServerAction = insertIntoOrders.bind(null,total);
+
   return (
-    <form action={async ()=>{"use server"; redirect(`/elegant/checkout/?total=${total}&page=orders`)}} className="flex flex-col gap-10 max-w-[650px] w-full mx-auto">
+    <form action={updatedServerAction} className="flex flex-col gap-10 max-w-[650px] w-full mx-auto">
       
       <section className="border border-primaryGray rounded-md p-5 flex flex-col gap-5">
         <h1 className="font-poppins font-medium text-primaryBlack text-xl">Contact Information</h1>

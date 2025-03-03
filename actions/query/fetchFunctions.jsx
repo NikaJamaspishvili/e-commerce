@@ -1,6 +1,6 @@
 "use server";
 
-import { callDatabase,QueryProfileData,QueryProductsData,QueryAllCommentsData,QueryProductsFromCart } from "@/config/database";
+import { callDatabase,QueryProfileData,QueryProductsData,QueryAllCommentsData,QueryProductsFromCart, QueryOrdersData } from "@/config/database";
 import { validateCategory,validatePrice } from "@/config/schema";
 
 import { decodeToken } from "../auth/token";
@@ -174,6 +174,16 @@ export async function fetchCartData(){
  return data;
 }
 
+export async function fetchOrdersData(){
+
+ let { userId } = await decodeToken();
+
+ let query = "SELECT * FROM orders WHERE userId = ?";
+
+ const data = await QueryOrdersData(query,[userId]);
+
+ return data;
+}
 
 
 export async function revalidateCache(tag){

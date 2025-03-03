@@ -159,14 +159,16 @@ export async function insertIntoCart(productId){
  revalidateTag("cart");
 }
 
-export async function insertIntoOrders(total,updatedDate){
+export async function insertIntoOrders(total){
   const {userId} = await decodeToken();
-
-  console.log(total,updatedDate);
+  const date = new Date().toLocaleDateString("en-US");
+  console.log(total);
   
-  const insertQuery = "INSERT INTO orders (createdAt,userId,total) VALUES (?,?,?)";
-
-  const result = await callDatabase(insertQuery,[updatedDate,userId,total]);
-
-  return result;
+  const insertQuery = "INSERT INTO orders (total,createdAt,userId) VALUES (?,?,?)";
+  const deleteFromCart = "DELETE FROM cart WHERE userId = ?";
+  const result = await callDatabase(insertQuery,[total,date,userId]);
+  await callDatabase(deleteFromCart,[userId]);
+  revalidateTag("cart");
+  revalidateTag("orders");
+  redirect(`/elegant/checkout/?total=${total}&id=${result.insertId}&page=orders`);
 }

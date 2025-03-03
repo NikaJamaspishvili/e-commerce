@@ -37,3 +37,4 @@ export const QueryProductsData = unstable_cache(callDatabase,['products'],{tags:
 // export const QueryAllProductsData = unstable_cache(callDatabase,['allProducts'],{tags:["allProducts"],revalidate:360});
 export const QueryAllCommentsData = unstable_cache(callDatabase,['comments'],{tags:["comments"]},{revalidate:60});
 export const QueryProductsFromCart = unstable_cache(callDatabase,['cart'],{tags:["cart"]});
+export const QueryOrdersData = unstable_cache(callDatabase,['orders'],{tags:["orders"]});

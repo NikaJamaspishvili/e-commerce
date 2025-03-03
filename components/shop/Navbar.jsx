@@ -5,6 +5,7 @@ import { FaBars,FaArrowRight } from "react-icons/fa";
 import { IoMdClose } from "react-icons/io";
 import { useEffect, useState } from "react";
 import { useRouter,usePathname } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 
 import ImageComponent from "./ImageComponent";
 import CartComponent from "./CartComponent";
@@ -29,10 +30,11 @@ function Navbar() {
  const [showDiscount,setShowDiscount] = useState(true);
  const [showMenu,setShowMenu] = useState(false);
  const [showCart,setShowCart] = useState(false);
-
-
  const router = useRouter();
  const pathName = usePathname();
+
+ const searchParams = useSearchParams();
+ const cart =searchParams.get('cart');
 
  function redirect(route){
     router.push('/elegant/'+route);
@@ -40,6 +42,20 @@ function Navbar() {
       setShowMenu(false);
    }
  }
+
+ useEffect(() => {
+  const cartParam = searchParams.get("cart");
+  setShowCart(cartParam === "true");
+}, [searchParams]);
+
+ const removeQueryParam = () => {
+  setShowCart(!showCart);
+  // Create a new URLSearchParams object without the "showDetails" param
+  const params = new URLSearchParams(searchParams.toString());
+  params.delete("cart");
+  // Update the URL without a page reload
+  router.push(`${pathName}?${params.toString()}`, { scroll: false });
+};
 
  return <div className="fixed flex w-full flex-col items-center cursor-default bg-white z-20">
  
@@ -56,7 +72,7 @@ function Navbar() {
 
       <section  className="flex items-center justify-center gap-4">
         <span onClick={()=>setShowMenu(!showMenu)} className={`text-2xl cursor-pointer md:hidden z-20 transition-all duration-300 ease-out ${showMenu ? "rotate-90" : "rotate-0"}`}>{<FaBars />}</span>
-        <p className="font-poppins text-3xl z-20 max-xsm:hidden">3elegant.</p>
+        <p onClick={()=>router.push('/elegant/shop')} className="font-poppins text-3xl z-20 max-xsm:hidden cursor-pointer">3elegant.</p>
       </section>
 
       <section className="hidden md:flex gap-8 text-lg font-spaceGrotesk text-primaryGray">
@@ -68,7 +84,7 @@ function Navbar() {
  
       <section className="flex items-center justify-center gap-4">
      <div className="relative z-50">
-     <img onClick={()=>setShowCart(!showCart)} width={35} className="cursor-pointer" src="/icons/Cart.svg" alt="Cart icon" />
+     <img onClick={removeQueryParam} width={35} className="cursor-pointer" src="/icons/Cart.svg" alt="Cart icon" />
      </div>
      {data?.[0]?.image ? <div onClick={()=>redirect('profile/account')} className="min-w-[50px]"><ImageComponent publicId={data[0].image} imageWidth={35} imageHeight={35} extraClasses="rounded-full cursor-pointer border"/></div> : <img src="/icons/Profile.svg" onClick={()=>redirect('profile/account')} width={35} className="cursor-pointer" alt="Profile icon" />}
       </section>

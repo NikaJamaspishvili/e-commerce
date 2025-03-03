@@ -23,7 +23,7 @@ function ProductQuantity({price,count,productId}) {
       </div>
 
       {count === 0 && <button onClick={()=>startTransition(async () => await insertIntoCart(productId))} className="bg-primaryBlack text-white rounded-lg w-full h-12 font-inter font-medium text-lg">{pending ? "Adding..." : "Add to Cart"}</button>}
-      {count > 0 && <button onClick={()=>redirect('/elegant/shop/cart')} className="bg-primaryBlack text-white rounded-lg w-full h-12 font-inter font-medium text-lg">Go to Cart</button>}
+      {count > 0 && <button onClick={()=>redirect(`/elegant/shop/${productId}?cart=true`)} className="bg-primaryBlack text-white rounded-lg w-full h-12 font-inter font-medium text-lg">Go to Cart</button>}
 
     </section>
   )

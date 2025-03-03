@@ -1,6 +1,22 @@
 "use client";
 
+import { useEffect,useState } from "react";
+
+import { fetchOrdersData } from "@/actions/query/fetchFunctions";
+
 function Orders() {
+
+  const [data,setData] = useState([]);
+
+ useEffect(()=>{
+  async function fetchData(){
+    let data = await fetchOrdersData();
+    console.log(data);
+    setData(data);
+  }
+
+  fetchData();
+ },[]);
 
   let array = [
     {numberID:"#34",Dates:"October 17,2023", Status:"Delievered", Price: "$1234.00"},
@@ -18,7 +34,7 @@ function Orders() {
     <table className="w-full">
      <thead>
      <tr className="border-b-2 border-[#E8ECEF] text-primaryGray text-left">
-       <th className="pb-2 font-light">Number ID</th>
+       <th className="pb-2 font-light">Id</th>
        <th className="pb-2 font-light">Dates</th>
        <th className="py-2 font-light">Status</th>
        <th className="pb-2 font-light">Price</th>
@@ -26,12 +42,12 @@ function Orders() {
      </thead>
 
      <tbody>
-      {array.map((result)=>{
-       return <tr key={result.numberID} className="mt-2 text-left text-primaryBlack font-inter border-b-2 border-[#E8ECEF]">
-         <td className="p-3 py-6 font-light">{result.numberID}</td>
-         <td className="p-3 py-6 font-light">{result.Dates}</td>
-         <td className="p-3 py-6 font-light">{result.Status}</td>
-         <td className="p-3 py-6 font-light">{result.Price}</td>
+      {data.map((result)=>{
+       return <tr key={result.id} className="mt-2 text-left text-primaryBlack font-inter border-b-2 border-[#E8ECEF]">
+         <td className="p-3 py-6 font-light">#{result.id}</td>
+         <td className="p-3 py-6 font-light">{result.createdAt}</td>
+         <td className="p-3 py-6 font-light">Delievered</td>
+         <td className="p-3 py-6 font-light">${result.total}</td>
        </tr>
       })}
      </tbody>
@@ -39,21 +55,21 @@ function Orders() {
    </div>}
 
        {window.innerWidth < 768 &&  <section className="flex flex-col mt-5 font-light">
-       {array.map((result,index)=>{
-        return <div key={result.numberID} className="flex gap-20 border-b-2 border-[#E8ECEF] py-5">
+       {data.map((result,index)=>{
+        return <div key={result.id} className="flex gap-20 border-b-2 border-[#E8ECEF] py-5">
 
           <div className='md:hidden flex flex-col gap-3 text-primaryGray font-inter'>
-            <p>Number ID</p>
+            <p>Order Id</p>
             <p>Dates</p>
             <p>Status</p>
             <p>Price</p>
         </div>
 
         <div className='flex font-inter w-full flex-col md:flex-row p-4 gap-3 md:justify-between text-primaryBlack'>
-            <p>{result.numberID}</p>
-            <p>{result.Dates}</p>
-            <p>{result.Status}</p>
-            <p>{result.Price}</p>
+            <p>#{result.id}</p>
+            <p>{result.createdAt}</p>
+            <p>Delievered</p>
+            <p>${result.total}</p>
         </div>
 
         </div>
