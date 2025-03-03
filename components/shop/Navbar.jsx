@@ -70,7 +70,7 @@ function Navbar() {
 
   <div className="w-[95%] mt-2 flex justify-between items-center p-3">
 
-      <section  className="flex items-center justify-center gap-4">
+      <section  className='flex items-center justify-center gap-4'>
         <span onClick={()=>setShowMenu(!showMenu)} className={`text-2xl cursor-pointer md:hidden z-20 transition-all duration-300 ease-out ${showMenu ? "rotate-90" : "rotate-0"}`}>{<FaBars />}</span>
         <p onClick={()=>router.push('/elegant/shop')} className="font-poppins text-3xl z-20 max-xsm:hidden cursor-pointer">3elegant.</p>
       </section>
