@@ -67,7 +67,6 @@ function Navbar() {
       </section>
  
       <section className="flex items-center justify-center gap-4">
-     <img onClick={()=>redirect('shop/search')} width={25} className="cursor-pointer" src="/icons/Search.svg" alt="search icon" />
      <div className="relative z-50">
      <img onClick={()=>setShowCart(!showCart)} width={35} className="cursor-pointer" src="/icons/Cart.svg" alt="Cart icon" />
      </div>
@@ -84,7 +83,7 @@ function Navbar() {
   </div>
   }
 
-  {!showMenu && showCart && <CartComponent />}
+  {!showMenu && showCart && <CartComponent setShowCart={setShowCart}/>}
     
     </div>
 

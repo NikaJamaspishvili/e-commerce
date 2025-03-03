@@ -168,7 +168,7 @@ export async function fetchCartData(){
 
  let { userId } = await decodeToken();
  
- let query = "SELECT cart.id, cart.productId, cart.userId, products.price, products.condition, products.name FROM cart JOIN products ON cart.productId = products.id WHERE cart.userId = ?;";
+ let query = "SELECT cart.id, cart.productId, cart.userId, products.price, products.condition, products.name , products.photos FROM cart JOIN products ON cart.productId = products.id WHERE cart.userId = ?;";
 
  const data = await QueryProductsFromCart(query,[userId]);
  return data;

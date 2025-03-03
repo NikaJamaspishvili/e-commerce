@@ -158,3 +158,15 @@ export async function insertIntoCart(productId){
 
  revalidateTag("cart");
 }
+
+export async function insertIntoOrders(total,updatedDate){
+  const {userId} = await decodeToken();
+
+  console.log(total,updatedDate);
+  
+  const insertQuery = "INSERT INTO orders (createdAt,userId,total) VALUES (?,?,?)";
+
+  const result = await callDatabase(insertQuery,[updatedDate,userId,total]);
+
+  return result;
+}
