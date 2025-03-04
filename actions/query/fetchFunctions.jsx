@@ -136,9 +136,11 @@ export async function fetchProductById(id){
   const data = await callDatabase(query,[id]);
   const count = await callDatabase(queryProductCartStatus,[id,userId]);
 
- console.log("count is: ",count);
-
-  return {data,count: count[0].count};
+  if(data.length > 0 && data[0].userId === userId){
+    return {data,count: count[0].count,isOwner: true};
+  }else{
+    return {data,count: count[0].count,isOwner: false};    
+  }
 }
 
 

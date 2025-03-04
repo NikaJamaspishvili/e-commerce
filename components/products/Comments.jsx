@@ -12,7 +12,7 @@ import { decodeToken } from "@/actions/auth/token";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 
-async function Comments({productId,order}) {
+async function Comments({isOwner,productId,order}) {
 
   dayjs.extend(relativeTime);
 
@@ -25,7 +25,7 @@ async function Comments({productId,order}) {
     <div className="mt-10 flex flex-col gap-5 border-t-2 border-[#E8ECEF] max-lg:max-w-[640px] pt-10 lg:w-3/4">
       <h1 className="font-poppins text-[#23262F] text-2xl font-medium">Customer Reviews</h1>
 
-   {count === 0 && <CommentsForm productId={productId}/>}
+   {count === 0 && !isOwner && <CommentsForm productId={productId}/>}
 
       <section className="flex mt-5 flex-col md:flex-row justify-between gap-4">
         <p className="font-poppins font-medium text-black text-3xl">{data.length} Reviews</p>

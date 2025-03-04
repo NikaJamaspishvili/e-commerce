@@ -2,7 +2,7 @@
 
 import { Inter,Poppins,Space_Grotesk } from "next/font/google";
 import { usePathname } from "next/navigation";
-import { Suspense } from "react"
+import { Suspense,useEffect } from "react"
 import Loader from "@/components/reusable/Loader";
 import dynamic from "next/dynamic";
 
@@ -32,6 +32,11 @@ export default function RootLayout({ children }) {
 
   const pathName = usePathname();
   const showComponents = pathName.startsWith('/elegant');
+  const lastPart = pathName.split("/").pop();
+
+  useEffect(() => {
+    localStorage.setItem("prevPath",pathName);
+  }, [lastPart]);
 
   return (
     <html lang="en">

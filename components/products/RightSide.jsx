@@ -1,6 +1,6 @@
 import ProductQuantity from "./ProductQuantity";
 
-function RightSide({stars,name,description,price,count,productId}) {
+function RightSide({isOwner,stars,name,description,price,count,productId}) {
   
   console.log(stars,name,description,price);
   
@@ -20,7 +20,7 @@ function RightSide({stars,name,description,price,count,productId}) {
      <p className="font-inter font-light text-primaryGray text-lg">{description}</p>
      <p className="font-poppins text-primaryBlack font-medium text-2xl">${price}</p>
 
-     <ProductQuantity price={price} count={count} productId={productId}/>
+     <ProductQuantity isOwner={isOwner} price={price} count={count} productId={productId}/>
     </div>
   )
 }

@@ -67,7 +67,7 @@ function Products() {
          {data.map((result,index)=>{
           return <tr key={index} className="mt-2 text-left text-primaryBlack font-inter border-b-2 border-[#E8ECEF]">
           <td className="py-6 font-light flex gap-3">
-            <CldImage priority className="w-auto h-auto" width={100} height={100} crop={"auto"} src={JSON.parse(result.photos)?.[0]} alt={result.name} />
+            <CldImage onClick={()=>{router.push(`/elegant/shop/${result.id}`)}} priority className="w-auto h-auto cursor-pointer" width={100} height={100} crop={"auto"} src={JSON.parse(result.photos)?.[0]} alt={result.name} />
             <div className="flex flex-col gap-3 ">
             <p className="font-semibold">{result.name}</p>
            {console.log(result.category)}
@@ -98,7 +98,7 @@ function Products() {
         return <div key={index} className="w-full flex flex-col gap-6 font-inter">
 
          <div className="w-full flex gap-5 items-start">
-         <CldImage priority className="w-auto h-auto" width="100" height="600" src={JSON.parse(result.photos)?.[0]} alt={result.name} />
+         <CldImage onClick={()=>{router.push(`/elegant/shop/${result.id}`)}} priority className="w-auto h-auto cursor-pointer" width="100" height="600" src={JSON.parse(result.photos)?.[0]} alt={result.name} />
          <div className="flex flex-col gap-3 w-full">
           <p className="font-semibold">{result.name}</p>
           {(result.category).map((result,index)=>{
