@@ -1,36 +1,82 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Elegant - E-Commerce Furniture Site  
 
-## Getting Started
+Welcome to **Elegant**, a hobby project that serves as a fully functional e-commerce platform for furniture. This project was built as a learning experience and showcases a simple yet complete e-commerce workflow.  
 
-First, run the development server:
+Below, you'll find all the details about the project, its functionality, the technologies used, and how to access it.  
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🛋️ What is Elegant?  
+Elegant is an e-commerce furniture website where users can:  
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+- Sign up and log in to their accounts.  
+- Change their profile image and review their profile details.  
+- Add furniture products for selling.  
+- Browse and view available furniture products.  
+- Add products to their cart and proceed to "buy" them *(no real payment integration, as this is a hobby project)*.  
+- View their order history to see all the purchases they've made.  
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The project is designed to be as simple as possible, focusing on core e-commerce functionalities without real-world payment processing.  
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 🛠️ Technologies Used  
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### **Frontend:**  
+- **Next.js** - For server-side rendering and routing.  
+- **Tailwind CSS** - For styling and responsive design.  
+- **React Three Fiber** - For 3D visualizations *(if applicable, e.g., product previews)*.  
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### **Backend:**  
+- **Next.js API Routes** - For handling backend logic.  
+- **MySQL** - For database management.  
 
-## Deploy on Vercel
+### **Hosting:**  
+- **Vercel** - The project is hosted on Vercel's free plan.  
+- **Aiven** - The MySQL database is hosted on Aiven's free plan.  
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🌐 Live Demo  
+You can access the live version of **Elegant** here:  
+👉 [https://3legant-phi.vercel.app/](https://3legant-phi.vercel.app/)  
+
+---
+
+## ⚠️ Important Notes  
+
+### **Free Plan Limitations:**  
+- Both the hosting (**Vercel**) and database (**Aiven**) are on free plans.  
+- The site might be slower than expected and could experience occasional downtime.  
+
+### **Database Issues:**  
+- If the site isn't working, it might be because the **Aiven free database** is down.  
+- The free plan requires **manual backups**, so there might be delays in restoring functionality.  
+
+### **No Real Payments:**  
+- Since this is a hobby project, **there is no real payment integration**.  
+- The "buy" functionality is simulated for demonstration purposes.  
+
+---
+
+## 🚀 Development Journey  
+This project was built **solo over the course of 1 month**.  
+
+It was a significant learning experience, especially since I started with **zero knowledge of Next.js**. By the end of the project, I felt comfortable working with Next.js and gained a deeper understanding of full-stack development.  
+
+
+---
+
+## 🙏 Acknowledgments  
+This project was a great way to **learn and experiment** with modern web development technologies.  
+
+Special thanks to the communities behind:  
+- **Next.js**  
+- **Tailwind CSS**  
+- **React Three Fiber**  
+
+For their **amazing documentation and resources**.  
+
+---
+
+Enjoy exploring **Elegant**! If you have any feedback or questions, feel free to reach out. 😊  
