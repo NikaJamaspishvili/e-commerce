@@ -4,7 +4,7 @@ import Wrapper from "@/components/contact/Wrapper"
 
 async function page() {
   return (
-    <div className="pt-40 flex flex-col gap-5 md:gap-10 p-5">
+    <div className="pt-44 flex flex-col gap-5 md:gap-10 p-5">
       <Wrapper />
       <h1 className="font-poppins font-medium text-3xl text-primaryBlack md:text-5xl md:max-w-[1000px]">We believe in sustainable decor. We’re passionate about life at home.</h1>
       <p className="font-inter font-light text-primaryBlack md:max-w-[1000px]">Our features timeless furniture, with natural fabrics, curved lines, plenty of mirrors and classic design, which can be incorporated into any decor project. The pieces enchant for their sobriety, to last for generations, faithful to the shapes of each period, with a touch of the present</p>
