@@ -1,11 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react"
-import { useRouter } from "next/navigation";
-import { useSearchParams } from "next/navigation";
+import { useRouter,useSearchParams } from "next/navigation";
 
 import { validatePrice } from "@/config/schema";
-import { useTransition } from "react";
 
 function Sorter() {
 

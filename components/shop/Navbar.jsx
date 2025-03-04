@@ -34,7 +34,6 @@ function Navbar() {
  const pathName = usePathname();
 
  const searchParams = useSearchParams();
- const cart =searchParams.get('cart');
 
  function redirect(route){
     router.push('/elegant/'+route);

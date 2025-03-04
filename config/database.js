@@ -7,9 +7,15 @@ import { unstable_cache } from "next/cache";
     const db = await mysql.createConnection({
     
     host: process.env.DB_HOST,
-    database: process.env.DB_DATABASE,
     user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_DATABASE,
+    Port: process.env.DB_PORT,
+    ssl:{
+        mode:'REQUIRED',
+        ca: process.env.DB_CA,
+        rejectUnauthorized: false
+    }
     
     })
     

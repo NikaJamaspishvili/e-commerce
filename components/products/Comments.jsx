@@ -5,6 +5,7 @@ import ImageComponent from "../shop/ImageComponent";
 import { fetchComments } from "@/actions/query/fetchFunctions";
 import CommentsDeleteBtn from "./CommentsDeleteBtn";
 
+import { Suspense } from "react";
 
 import { decodeToken } from "@/actions/auth/token";
 
@@ -28,7 +29,9 @@ async function Comments({productId,order}) {
 
       <section className="flex mt-5 flex-col md:flex-row justify-between gap-4">
         <p className="font-poppins font-medium text-black text-3xl">{data.length} Reviews</p>
+        <Suspense fallback={<div>waiting...</div>}>
         <CommentsFilter length={data.length}/>
+        </Suspense>
       </section>
 
       <section className="pt-5 flex flex-col gap-10">

@@ -2,6 +2,7 @@
 
 import { Inter,Poppins,Space_Grotesk } from "next/font/google";
 import { usePathname } from "next/navigation";
+import { Suspense } from "react";
 
 //component imports
 import Navbar from "../components/shop/Navbar";
@@ -33,7 +34,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`bg-[#FFFFFF] ${poppins.variable} ${inter.variable} ${spaceGrotesk.variable} relative`}>
-        {showComponents && <Navbar />}
+        {showComponents &&<Suspense fallback={<div>Loading...</div>}><Navbar /></Suspense>}
         <div className="w-[95%] mx-auto max-w-[1500px]">
         {children}
         </div>
