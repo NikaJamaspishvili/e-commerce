@@ -16,7 +16,6 @@ import { unstable_cache } from "next/cache";
         ca: process.env.DB_CA,
         rejectUnauthorized: false
     }
-    
     })
     
     const [result] = await db.execute(query,data);

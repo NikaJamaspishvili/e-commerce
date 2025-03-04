@@ -85,7 +85,7 @@ function Navbar() {
      <div className="relative z-50">
      <img onClick={removeQueryParam} width={35} className="cursor-pointer" src="/icons/Cart.svg" alt="Cart icon" />
      </div>
-     {data?.[0]?.image ? <div onClick={()=>redirect('profile/account')} className="min-w-[50px]"><ImageComponent publicId={data[0].image} imageWidth={35} imageHeight={35} extraClasses="rounded-full cursor-pointer border"/></div> : <img src="/icons/Profile.svg" onClick={()=>redirect('profile/account')} width={35} className="cursor-pointer" alt="Profile icon" />}
+     {(data.length > 0 && data[0].image !== null) ? <div onClick={()=>redirect('profile/account')} className="min-w-[50px]"><ImageComponent publicId={data[0].image} imageWidth={35} imageHeight={35} extraClasses="rounded-full cursor-pointer border"/></div> : <img src="/icons/Profile.svg" onClick={()=>redirect('profile/account')} width={35} className="cursor-pointer" alt="Profile icon" />}
       </section>
   </div>
 

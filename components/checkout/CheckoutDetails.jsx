@@ -2,7 +2,6 @@ import { insertIntoOrders } from "@/actions/query/postFunctions"
 import CheckoutForm from "./CheckoutForm"
 
 function CheckoutDetails({total}) {
-
   const updatedServerAction = insertIntoOrders.bind(null,total);
 
   return (

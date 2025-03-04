@@ -8,6 +8,7 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
 import { callDatabase } from "@/config/database";
+import { uploadImage } from "../other/cloudinary";
 
 
 export async function googleLogin(){
@@ -56,7 +57,7 @@ export async function googleRegisterUser(state,formData){
  const username = formData.get("username");
 
  if(session){
- const {email,image,googleId} = session.user;
+ const {email,googleId} = session.user;
 
  const selectQuery = "SELECT * FROM users WHERE username = ?";
  const selectResult = await callDatabase(selectQuery,[username]);
@@ -69,9 +70,9 @@ export async function googleRegisterUser(state,formData){
     }
  }
 
- const insertQuery = "INSERT INTO users (username,email,password,provider,image) VALUES (?,?,?,?,?)"; 
- const insertResult = await callDatabase(insertQuery,[username,email,googleId,'google',image]);
-
+// const imageUploadResult = await uploadImage(image,"profile-images");
+ const insertQuery = "INSERT INTO users (username,email,password,provider) VALUES (?,?,?,?)"; 
+ const insertResult = await callDatabase(insertQuery,[username,email,googleId,'google']);
  //assign jwt and end the game
 
 let token =  await generateToken(insertResult.insertId);
