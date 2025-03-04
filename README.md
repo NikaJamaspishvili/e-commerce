@@ -9,7 +9,8 @@ Below, you'll find all the details about the project, its functionality, the tec
 ## 🛋️ What is Elegant?  
 Elegant is an e-commerce furniture website where users can:  
 
-- Sign up and log in to their accounts.  
+- Sign up and log in to their accounts.
+- Google Authentication.
 - Change their profile image and review their profile details.  
 - Add furniture products for selling.  
 - Browse and view available furniture products.  
@@ -23,7 +24,8 @@ The project is designed to be as simple as possible, focusing on core e-commerce
 ## 🛠️ Technologies Used  
 
 ### **Frontend:**  
-- **Next.js** - For server-side rendering and routing.  
+- **Next.js** - For server-side rendering and routing.
+- **NextAuth.js** - For Google Authentication.  
 - **Tailwind CSS** - For styling and responsive design.  
 - **React Three Fiber** - For 3D visualizations *(if applicable, e.g., product previews)*.  
 
