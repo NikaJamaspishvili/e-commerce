@@ -2,10 +2,12 @@
 
 import { Inter,Poppins,Space_Grotesk } from "next/font/google";
 import { usePathname } from "next/navigation";
-import { Suspense } from "react";
+import { Suspense } from "react"
+import Loader from "@/components/reusable/Loader";
+import dynamic from "next/dynamic";
 
 //component imports
-import Navbar from "../components/shop/Navbar";
+const Navbar = dynamic(()=>import('../components/shop/Navbar'),{ssr:false,loading:()=><Loader />});
 import Footer from "../components/shop/Footer";
 
 import "./globals.css";

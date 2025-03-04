@@ -20,7 +20,7 @@ export const deleteProduct = async (id,arrayId)=>{
     
     await deleteImage(array);
 
-    revalidateTag("allProducts");
+    revalidateTag("products");
 }
 
 export const logOutAction = async ()=>{
