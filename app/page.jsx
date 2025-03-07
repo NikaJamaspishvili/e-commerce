@@ -8,7 +8,7 @@ import "swiper/css/navigation";
 
 import { FaArrowRight,FaCheck,FaEnvelope } from "react-icons/fa";
 
-import { useEffect,useState } from "react";
+import { Suspense, useEffect,useState } from "react";
 import { useRouter } from "next/navigation";
 
 import dynamic from "next/dynamic";
@@ -46,7 +46,7 @@ function page() {
 
   return (
     <div className="w-screen absolute left-0 top-0">
-        <Navbar isRegistered={false}/>
+        <Suspense fallback={<Loader />}><Navbar isRegistered={false}/></Suspense>
 
         <div className="mt-32 flex flex-col gap-12 w-[80%] mx-auto max-w-[1500px]">
             <section>
