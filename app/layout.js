@@ -41,7 +41,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`bg-[#FFFFFF] ${poppins.variable} ${inter.variable} ${spaceGrotesk.variable} relative`}>
-        {showComponents &&<Suspense fallback={<div>Loading...</div>}><Navbar /></Suspense>}
+        {showComponents &&<Suspense fallback={<div>Loading...</div>}><Navbar isRegistered={true}/></Suspense>}
         <div className="w-[95%] mx-auto max-w-[1500px]">
         {children}
         </div>

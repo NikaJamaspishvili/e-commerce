@@ -4,8 +4,7 @@
 import { FaBars,FaArrowRight } from "react-icons/fa";
 import { IoMdClose } from "react-icons/io";
 import { useEffect, useState } from "react";
-import { useRouter,usePathname } from "next/navigation";
-import { useSearchParams } from "next/navigation";
+import { useRouter,usePathname,useSearchParams } from "next/navigation";
 
 import ImageComponent from "./ImageComponent";
 import CartComponent from "./CartComponent";
@@ -13,7 +12,7 @@ import CartComponent from "./CartComponent";
 import { FetchProfileData } from "@/actions/query/fetchFunctions";
 
 
-function Navbar() {
+function Navbar({isRegistered}) {
 
  const [data,setData] = useState([]);
 
@@ -24,7 +23,11 @@ function Navbar() {
       console.log("navbar data is: ",data);
     }
 
-    test();
+    console.log(isRegistered);
+
+    if(isRegistered){
+      test();
+    }
   },[]); 
 
  const [showDiscount,setShowDiscount] = useState(true);
@@ -36,7 +39,11 @@ function Navbar() {
  const searchParams = useSearchParams();
 
  function redirect(route){
+   if(route === "home"){
+    router.push('/');
+   }else{
     router.push('/elegant/'+route);
+   }
     if(showMenu){
       setShowMenu(false);
    }
@@ -83,7 +90,7 @@ function Navbar() {
  
       <section className="flex items-center justify-center gap-4">
      <div className="relative z-50">
-     <img onClick={removeQueryParam} width={35} className="cursor-pointer" src="/icons/Cart.svg" alt="Cart icon" />
+     {isRegistered && <img onClick={removeQueryParam} width={35} className="cursor-pointer" src="/icons/Cart.svg" alt="Cart icon" />}
      </div>
      {(data.length > 0 && data[0].image !== null) ? <div onClick={()=>redirect('profile/account')} className="min-w-[50px]"><ImageComponent publicId={data[0].image} imageWidth={35} imageHeight={35} extraClasses="rounded-full cursor-pointer border"/></div> : <img src="/icons/Profile.svg" onClick={()=>redirect('profile/account')} width={35} className="cursor-pointer" alt="Profile icon" />}
       </section>
@@ -98,7 +105,7 @@ function Navbar() {
   </div>
   }
 
-  {!showMenu && showCart && <CartComponent setShowCart={setShowCart}/>}
+  {!showMenu && showCart && isRegistered && <CartComponent setShowCart={setShowCart}/>}
     
     </div>
 
